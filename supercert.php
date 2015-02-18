@@ -10,7 +10,7 @@ echo "Bitte wählen Sie aus";
 //direkte html Verlinkung test
 echo "<a href=\"./anmeldung.html\">Anmelden</a>";
 //noch keine Verlinkung
-echo "<a href=\"\">Sie sind noch nicht angemeldet? Registrieren Sie sich hier!</a>";
+echo "<a href="+ include (registrierung) +"\"\">Sie sind noch nicht angemeldet? Registrieren Sie sich hier!</a>";
 
 }
 else {
