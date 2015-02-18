@@ -3,20 +3,29 @@
 //Testseite für index-Startseite
 //loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt
 $login = 1;
-
+//nicht angemeldet
 if ($login=1){
-echo "Willkommen bei Supercert";
-echo "Bitte wählen Sie aus";
-//direkte html Verlinkung test
-echo "<a href=\"./anmeldung.html\">Anmelden</a>";
-//noch keine Verlinkung
-echo "<a href="+ include ("registrierung.html") +"\"\">Sie sind noch nicht angemeldet? Registrieren Sie sich hier!</a>";
+include ("logintemplate.html");
+
+
+//direkte Einbindung
+ include ("anmeldung.html");
+ include ("registrierung.html");
+ 
 
 }
 else {
-	echo "Ein Fehler ist aufgetreten";
+	echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
 }
-include ("Homepage.html");
+
+//bereits angemeldet
+if ($login=2){
+	include ("Homepage.html");
+}
+else {
+	
+}
+
 
 
 //wird evtl. später gebraucht um Seite von dieser Seite aufzubauen
