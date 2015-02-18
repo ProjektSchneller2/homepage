@@ -4,7 +4,7 @@
 //loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt
 $login = 1;
 //nicht angemeldet
-if ($login=1){
+if ($login == 1){
 include ("logintemplate.html");
 
 
@@ -19,7 +19,7 @@ else {
 }
 
 //bereits angemeldet
-if ($login=2){
+if ($login == 2){
 	include ("Homepage.html");
 }
 else {
