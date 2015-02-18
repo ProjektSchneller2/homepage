@@ -2,9 +2,9 @@
 
 
 //loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt
-$login = 0;
+$login = 1;
 
-if ($login=0){
+if ($login=1){
 echo "Willkommen bei Supercert";
 echo "Bitte wählen Sie aus";
 //direkte html Verlinkung test
