@@ -1,32 +1,4 @@
 
-<!DOCTYPE html>
-<!-- test -->
-<html>
-<body>
-<div>
-<h1>Bitte füllen Sie für eine erfolgreiche Anmeldung alle Felder aus :</h1>
-<form action="login.php" method="POST">
-<tr>
-<td>Benutzername</td>
-<td>
-<input type="text">
-</td>
-</tr>
-<tr>
-<td>Passwort</td>
-<td>
-<input type="text">
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<input type="submit" name="submitlogin" value="Anmelden">
-</td>
-</tr>
-</form>
-</div>
-</body>
-</html>
 <?php
 
 //Testseite für index-Startseite
@@ -56,7 +28,7 @@ else {
 	
 
 //bereits angemeldet
-if ($login == 1){
+if ($login == 2){
 	include ("Homepage.html");
 }
 else {

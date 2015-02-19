@@ -1,24 +1,38 @@
 <!DOCTYPE html>
 <html>
 <div>
-<body>
+<body bgcolor="#FF4000">
 <h1>Bitte füllen Sie für eine erfolgreiche Registration alle Felder aus :</h1>
-<form>
+<form action="registration.php" method="POST">
 <tr>
 <td>Benutzername</td>
-<td>Passwort</td>
+<td>
+<input type="text">
+</td>
 </tr>
 <tr>
+<td>Passwort</td>
 <td>
 <input type="text">
 </td>
-<td>
-<input type="text">
+</tr>
+<tr>
+<td>Passwort wiederholen
 </td>
+<td>
+<input type="text"></td>
+</tr>
+<tr>
+<p>Common Name (CN):<br><input name="common name" type="text" size="30" maxlength="30"></p>
+			<p>Organization (O):<br><input name="organization" type="text" size="30" maxlength="40"></p>
+			<p>Organizsation Unit (OU):<br><input name="organization unit" type="text" size="30" maxlength="40"></p>
+			<p>Location (L):<br><input name="location" type="text" size="30" maxlength="40"></p>
+			<p>State (S oder ST):<br><input name="state" type="text" size="30" maxlength="40"></p>
+			<p>Country (C):<br><input name="country" type="text" size="30" maxlength="40"></p>
 </tr>
 <tr>
 <td colspan="2">
-<input type"submit" value"Anmelden">
+<input type="submit" name="submitlogin" value="Registrieren">
 </td>
 </tr>
 </form>
