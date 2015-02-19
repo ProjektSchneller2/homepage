@@ -1,29 +1,31 @@
+
 <!DOCTYPE html>
 <!-- test -->
 <html>
-<div>
 <body>
-<h1>Bitte füllen Sie für eine erfolgreiche Registration alle Felder aus :</h1>
-<form>
+<div>
+<h1>Bitte füllen Sie für eine erfolgreiche Anmeldung alle Felder aus :</h1>
+<form action="login.php" method="POST">
 <tr>
 <td>Benutzername</td>
-<td>Passwort</td>
-</tr>
-<tr>
 <td>
 <input type="text">
 </td>
+</tr>
+<tr>
+<td>Passwort</td>
 <td>
 <input type="text">
 </td>
 </tr>
 <tr>
 <td colspan="2">
-<input type"submit" value"Anmelden">
+<input type="submit" name="submitlogin" value="Anmelden">
 </td>
 </tr>
 </form>
 </div>
+</body>
 </html>
 <?php
 
@@ -39,7 +41,7 @@ session_start();
 //		exit;
 //	}
 
-$login = 2;
+$login = 1;
 //nicht angemeldet
 
 if ($login == 1){
@@ -51,20 +53,21 @@ include ("logintemplate.html");
  }
  
 else {
-	echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
-	exit;
-}
+	
 
 //bereits angemeldet
-if ($login == 2){
+if ($login == 1){
 	include ("Homepage.html");
 }
 else {
+	echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
+	exit;
 	
 }
 
 
 
+}
 
 
 //wird evtl. später gebraucht um Seite von dieser Seite aufzubauen
@@ -79,6 +82,7 @@ foreach ($template as &$part) {
 		
 	}
 }
+
 
 echo implode($homepage)*/
 ?>
