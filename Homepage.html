@@ -5,16 +5,19 @@
 <body>
 	
 <h1>Bitte wählen Sie welches Zertifikat Sie kaufen wollen:</h1>
-<form action="selectcert.html">
+<form action="selectcert.php" method="POST">
   <tr>
   <td>Sie können zwischen zwei Zertifikaten wählen:
   </td>
   <td>
     <select name="selectcert" size="2">
-      <option>Imidiate Certifacte</option>
-      <option>Wildcard Certificate</option>
+      <option value="intermidiate">Intermidiate Certifacte</option>
+      <option value="wildcard">Wildcard Certificate</option>
       
     </select>
+    </td>
+    <td>
+    <input type="submit" name="selectcertsubmit" value="weiter">
     </td>
  </tr>
 </form>
