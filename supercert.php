@@ -29,12 +29,17 @@ else {
 
 //bereits angemeldet
 if ($login == 2){
+	//statt $login==2 Sessionwerte abfragen ob der Kunde von csrupload.php kommt - dann csr weiterverarbeitung
+	
+	//include ("xy");
+	if ($login == 2){
 	include ("Homepage.html");
 }
 else {
 	echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
 	exit;
 	
+}
 }
 
 
