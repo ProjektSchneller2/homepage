@@ -4,20 +4,21 @@
 </head>
 <body>
 	<div>
-<h1>Bitte wählen Sie welches Zertifikat Sie kaufen wollen:</h1>
+<h1>Ein neues Zertifikat können Sie hier downloaden.</h1>
 <form action="selectcert.php" method="POST">
-  <tr>
-  <td>Sie können zwischen zwei Zertifikaten wählen:
+  <tr style="height:50px;">
+  <td >Sie können zwischen drei Zertifikaten wählen:
   </td>
   <td>
-    <select name="selectcert" size="2">
-      <option value="intermidiate">Intermidiate Certifacte</option>
-      <option value="wildcard">Wildcard Certificate</option>
+    <select name="selectcert" size="1">
+    <option value="singlecert">Einfaches Zertifikat</option>
+      <option value="intermidiate">Intermidiate Zertifikat</option>
+      <option value="wildcard">Wildcard Zertifikat</option>
       
     </select>
     </td>
     <td>
-    <input type="submit" name="selectcertsubmit" value="weiter" style="border-radius: 5px; border: solid; width: 100px; height:25px; font-family: Arial; background: #f4f4f4;">
+    <input type="submit" name="selectcertsubmit" value="weiter" style="border-radius: 5px; border: 0.5px; width: 100px; height:25px; font-family: Arial; background: #f4f4f4;">
     </td>
  </tr>
 </form>
@@ -28,7 +29,7 @@
 <div>
 <form action="selectcert.php" method="POST">
   <tr>
-  <td> <input type="submit" name="logout" value="Ausloggen" style="border-radius: 5px; border: solid; width: 100px; height:25px; font-family: Arial; background: #f4f4f4;>
+  <td> <input type="submit" name="logout" value="Ausloggen" style="border-radius: 5px; border: 0.5px; width: 100px; height:25px; font-family: Arial; background: #f4f4f4;>
     </td>
  </tr>
 </form>
