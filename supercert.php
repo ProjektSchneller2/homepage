@@ -33,7 +33,10 @@ if ($login == 2){
 	
 	//include ("xy");
 	if ($login == 2){
-	include ("Homepage.html");
+		//Liste der bereits erworbenen Zertifikate
+	include ("certlist.php");
+	//Auswahl der kaufbaren Zertifikate
+	include ("selectcert.html");
 }
 else {
 	echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
