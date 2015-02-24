@@ -13,7 +13,7 @@ session_start();
 //		exit;
 //	}
 
-$login = 1;
+$login = 2;
 //nicht angemeldet
 
 if ($login == 1){
@@ -33,6 +33,8 @@ if ($login == 2){
 	
 	//include ("xy");
 	if ($login == 2){
+	//Begrüßung und Farbe
+	include ("template.html");
 		//Liste der bereits erworbenen Zertifikate
 	include ("certlist.php");
 	//Auswahl der kaufbaren Zertifikate
