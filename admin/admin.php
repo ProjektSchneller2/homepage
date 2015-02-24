@@ -1,6 +1,6 @@
 <?php
 
-<?php
+
 
 //Testseite für index-Startseite
 //loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt
@@ -18,7 +18,7 @@ $login = 1;
 //nicht angemeldet
 
 if ($login == 1){
-	include ("logintemplate.html");
+	include ("../logintemplate.html");
 
 }
 
@@ -62,5 +62,4 @@ else {
 
 
  echo implode($homepage)*/
-?>
 ?>

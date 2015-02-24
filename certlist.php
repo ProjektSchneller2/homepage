@@ -8,8 +8,8 @@ $certcount = 5;
 		if ($certcount !== Null){
 			
 			//Darstellung als Liste/Tabelle
-			echo "<table style=\"border-width:10px; border-color:#66CC66; border-style:ridge; padding:5px;\">";
-			while ($certcount >= 0){
+			echo "<table style=\"border-radius: 5px; border-width:10px; border-color:#66CC66; border-style:ridge; padding:5px; width: 500px;\">";
+			while ($certcount >= 1){
 				//in den jeweiligen tds müssen dann die jeweiligen pendants der datenbank eingefügt werden
 				echo "<tr>";
 				echo "<td>";
