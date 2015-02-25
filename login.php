@@ -24,9 +24,6 @@ if ($account['password'] == $pw) {
 } else {
 	$_SESSION['accountaccept'] = FALSE;
 }
-} else {
-	$_SESSION['accountaccept'] = FALSE;
-}
 
 header('Location: supercert.php');
 
