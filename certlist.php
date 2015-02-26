@@ -1,5 +1,12 @@
 <?php
 
+
+if(!isset($_SESSION["username"]))
+{
+	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
+	exit;
+}
+
 //Datenbankabfrage ob bereits Zertifikate gekauft wurden + Auflistung
 //certcount soll die Anzahl der Zertifikate darstellen, im Mom. noch fest codiert
 $certcount = 5;
