@@ -1,9 +1,33 @@
 <?php
 //Einlogdaten + PWHash
+session_start();
+?>
+
+<?php 
+include 'dbconnect.php';
+
+$username = $_POST["username"]; 
+$passwort = md5($_POST["password"]); 
+
+$abfrage = "SELECT username, passwort FROM login WHERE username LIKE '$username' LIMIT 1"; 
+$ergebnis = mysqli_query($db, $abfrage); 
+$row = mysqli_fetch_object($ergebnis); 
+
+if($row->passwort == $passwort) 
+    { 
+    $_SESSION["username"] = $username; 
+    echo "Login erfolgreich. <br> <a href=\"supercert.php\">supercert.php</a>"; 
+    } 
+else 
+    { 
+    echo "Benutzername und/oder Passwort waren falsch. <a href=\"anmeldung.html\">Login</a>"; 
+    } 
 
 
 
-if (isset($_POST['username'])) {
+/* old code:
+ * 
+ * if (isset($_POST['username'])) {
 	$username = $_POST['username'];
 } else {
 	$error = TRUE;
@@ -26,5 +50,6 @@ if ($account['password'] == $pw) {
 }
 
 header('Location: supercert.php');
+ */
 
 ?>
