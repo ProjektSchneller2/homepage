@@ -11,6 +11,9 @@ if(!isset($_SESSION["username"]))
 //certcount soll die Anzahl der Zertifikate darstellen, im Mom. noch fest codiert
 $certcount = 5;
 
+
+
+
 //Prüfung ob Zertifikate gekauft werden
 		if ($certcount !== Null){
 			
@@ -21,13 +24,22 @@ $certcount = 5;
 				echo "<tr>";
 				echo "<td>";
 				echo "$certcount";
-				echo "<td>";
+				echo "</td>";
 				echo "<td>";
 				echo "Zertifikatsart";
-				echo "<td>";
+				echo "</td>";
 				echo "<td>";
 				echo "Zertifikatsdownload";
+				echo "</td>";
 				echo "<td>";
+				while ($certcount >=1){
+//foreach besser, wenn die zertifikate dann als array ausgelesen werden
+					echo "<form action=\"certlist.php\" method=\"GET\">";
+					echo "<input type=\"submit\" name=\"certdownload\" value=\"Download\">";
+					echo "</form>";
+				}
+				
+				echo "</td>";
 				echo "</tr>";
 				
 				$certcount=$certcount-1;
