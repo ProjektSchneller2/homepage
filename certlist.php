@@ -32,12 +32,12 @@ $certcount = 5;
 				echo "Zertifikatsdownload";
 				echo "</td>";
 				echo "<td>";
-				while ($certcount >=1){
+				
 //foreach besser, wenn die zertifikate dann als array ausgelesen werden
-					echo "<form action=\"certlist.php\" method=\"GET\">";
+					echo "<form action=\"downloadcert.php\" method=\"GET\">";
 					echo "<input type=\"submit\" name=\"certdownload\" value=\"Download\">";
 					echo "</form>";
-				}
+				
 				
 				echo "</td>";
 				echo "</tr>";
