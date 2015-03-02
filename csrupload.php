@@ -26,9 +26,7 @@ echo "</pre>";
 var_dump($_POST);
 if ( $_FILES['csruploadfile']['name']  != Null )
 {
-	//if($dateityp == "application/x-x509-ca-cert" 
-	//|| $dateityp == "application/octet-stream" 
-	//|| $dateityp == "application/pkcs10")
+	
 	$zugelassenedateitypen = array("application/x-x509-ca-cert"|| "application/octet-stream"|| "application/pkcs10");
 
 	if ( ! in_array( $_FILES['csruploadfile']['type'] , $zugelassenedateitypen ))
