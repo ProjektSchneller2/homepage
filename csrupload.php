@@ -28,6 +28,15 @@ if ( $_FILES['csruploadfile']['name']  != Null )
 		move_uploaded_file (
 		$_FILES['csruploadfile']['tmp_name'] ,
 		$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] );
+		// Mail Adresse muss noch im Webserver in der init hinterlegt werden
+		$empfaenger = "dhbwprojektitsec@gmail.com";
+		$absendername = "CSR Anfrage Formular";
+		$absendermail = "dhbwprojektitsec@gmail.com";
+		$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
+		//Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
+		$text = "Eine neue CSR wurde hochgeladen.";
+		mail($empfaenger, $betreff, $text, "From: $absendername <$absendermail>");
+		
 
 		echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
 		echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
