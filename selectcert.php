@@ -10,7 +10,7 @@ if(!isset($_SESSION["username"]))
 
 
 $selection = $_POST["selectcert"];
-var_dump($_POST);
+//var_dump($_POST);
 
   
 if ($selection == "singlecert"){
