@@ -1,25 +1,30 @@
 <?php
 //welches Zertifikat soll es werden? Intermediate/Wildcard/Sub-Ca?
+
+//Typ= aus Datenbank auslesen
 $certificat_kind= "Wildcard";
 
 //Tage über irgendein Feld von der Webseite übertragen
+//aus Datenbank auslesen
 $days = "365";
 
 //Username
+//aus Datenbank auslesen
 $username = "ABC";
 
 //Timestamp
+//aus Datenbank auslesen
 $timestamp = "1234";
 
-//Name des Ordners des Users
+//Pfad zur csr-Datei; mit ".csr" ?
+//aus Datenbank auslesen
 $userbox = "";
 
 //wo liegt das config-File?
-$cnf_pfad = "";
+//$cnf_pfad = "/etc/apache2/sites-enabled/000-default.conf";
 
-//evtl muss openssl in einem bestimmten Ordner aufgerufen werden -> Pfad zum Ordner noch einfügen
 
-//Name der csr-Datei muss momentan immer "ca.csr" lauten
+//Name der csr-Datei muss momentan immer ".csr" lauten -> aus Datenbank auslesen
 
 
 
@@ -27,11 +32,11 @@ $cnf_pfad = "";
 
 if ($certificat_kind=="Intermediate"){
 	//Intermediate:
-	$command = "\usr\bin\openssl ca -config intermediate.cnf -days ";
+	$command = "openssl ca -config /etc/apache2/sites-enabled/000-default.conf -days ";
 	$command += $days;
 	$command += " -in ";
 	$command += $userbox;
-	$command += "\ca.csr -extensions v3_ca -out ";
+	$command += ".csr -extensions v3_ca -out ";
 	$command += $userbox+"\\"+$username+"_IM_"+$timestamp+".crt";
 
 	$output = shell_exec($command);
@@ -39,11 +44,11 @@ if ($certificat_kind=="Intermediate"){
 
 else if($certificat_kind=="Wildcard"){
 	//WC:
-	$command = "\usr\bin\openssl ca -config intermediate.cnf -days ";
+	$command = "openssl ca -config /etc/apache2/sites-enabled/000-default.conf -days ";
 	$command += $days;
 	$command += " -in "; 
 	$command += $userbox;
-	$command += "\ca.csr -out ";
+	$command += ".csr -out ";
 	$command += $userbox+"\\"+$username+"_WC_"+$timestamp+".crt";
 
 	$output = shell_exec($command);
@@ -51,11 +56,11 @@ else if($certificat_kind=="Wildcard"){
 
 else if($certificat_kind=="Sub-Ca"){
 	//WC:
-	$command = "\usr\bin\openssl ca -config intermediate.cnf -days ";
+	$command = "openssl ca -config /etc/apache2/sites-enabled/000-default.conf -days ";
 	$command += $days;
 	$command += " -in ";
 	$command += $userbox;
-	$command += "\ca.csr -out ";
+	$command += ".csr -out ";
 	$command += $userbox+"\\"+$username+"_S-Ca_"+$timestamp+".crt";
 
 	$output = shell_exec($command);
