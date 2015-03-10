@@ -15,7 +15,7 @@ $row = mysqli_fetch_object($ergebnis);
 
 if($row->passwort == $passwort) 
     { 
-    $_SESSION["username"] = $username; 
+    $_SESSION["admin"] = $username; 
     echo "Login erfolgreich. <br> <a href=\"admin.php\">admin.php</a>"; 
     } 
 else 

@@ -7,7 +7,7 @@
 //öffnet eine Session um den Status der Anmeldung zu speichern/abzufragen
 
 session_start();
-if(!isset($_SESSION["username"]))
+if(!isset($_SESSION["admin"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
 	exit;
@@ -17,6 +17,8 @@ if(!isset($_SESSION["username"]))
 			include ("console.php");
 			echo "<p>&nbsp;</p>";
 			include ("admincertlist.php");
+			echo "<p>&nbsp;</p>";
+			include ("userfreischaltung.php");
 			echo "<p>&nbsp;</p>";
 			include '../logout.html';
 			

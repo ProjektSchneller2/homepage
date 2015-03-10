@@ -9,9 +9,14 @@ include 'dbconnect.php';
 $username = $_POST["username"]; 
 $passwort = md5($_POST["password"]); 
 
-$abfrage = "SELECT username, passwort FROM login WHERE username LIKE '$username' LIMIT 1"; 
+$abfrage = "SELECT username, passwort, freischaltung FROM login WHERE username LIKE '$username' LIMIT 1"; 
 $ergebnis = mysqli_query($db, $abfrage); 
 $row = mysqli_fetch_object($ergebnis); 
+
+if($row->freischaltung == 0){
+	echo "Ihr Account wurde noch nicht freigeschaltet. <a href=\"anmeldung.html\">Login</a>";
+}
+else {
 
 if($row->passwort == $passwort) 
     { 
@@ -22,7 +27,7 @@ else
     { 
     echo "Benutzername und/oder Passwort waren falsch. <a href=\"anmeldung.html\">Login</a>"; 
     } 
-
+}
 
 
 /* old code:

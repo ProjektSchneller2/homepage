@@ -2,10 +2,11 @@
 include 'dbconnect.php';
 
 $username = $_POST["username"];
+$email = $_POST["email"];
 $passwort = $_POST["passwort"];
 $passwort2 = $_POST["passwort2"];
 
-if($passwort != $passwort2 OR $username == "" OR $passwort == "")
+if($passwort != $passwort2 OR $username == "" OR $passwort == "" OR $email == "")
 {
 	echo "Eingabefehler. Bitte alle Felder korekt ausfüllen. <a href=\"registrierung.html\">Zurück</a>";
 	exit;
@@ -17,7 +18,7 @@ $menge = mysqli_num_rows($result);
 
 if($menge == 0)
 {
-	$eintrag = "INSERT INTO login (username, passwort) VALUES ('$username', '$passwort')";
+	$eintrag = "INSERT INTO login (username, passwort, email, freischaltung) VALUES ('$username', '$passwort', '$email', 0)";
 	$eintragen = mysqli_query($db, $eintrag);
 
 	if($eintragen == true)
