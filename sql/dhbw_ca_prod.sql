@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 10. Mrz 2015 um 15:47
+-- Erstellungszeit: 10. Mrz 2015 um 19:39
 -- Server Version: 5.6.21
 -- PHP-Version: 5.5.19
 
@@ -46,15 +46,21 @@ CREATE TABLE IF NOT EXISTS `cert` (
 CREATE TABLE IF NOT EXISTS `login` (
 `id` int(8) unsigned NOT NULL,
   `username` varchar(150) NOT NULL,
-  `passwort` varchar(32) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `passwort` varchar(32) NOT NULL,
+  `email` varchar(150) NOT NULL,
+  `freischaltung` tinyint(1) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `login`
 --
 
-INSERT INTO `login` (`id`, `username`, `passwort`) VALUES
-(1, 'test', '098f6bcd4621d373cade4e832627b4f6');
+INSERT INTO `login` (`id`, `username`, `passwort`, `email`, `freischaltung`) VALUES
+(1, 'test', '098f6bcd4621d373cade4e832627b4f6', 'test@test.net', 1),
+(2, 'andi', '098f6bcd4621d373cade4e832627b4f6', 'andreas@puchinger.net', 1),
+(4, 'martin', '098f6bcd4621d373cade4e832627b4f6', 'xx', 1),
+(5, 'vera', '098f6bcd4621d373cade4e832627b4f6', 'j', 0),
+(6, 'schnulff', '098f6bcd4621d373cade4e832627b4f6', 'j', 1);
 
 --
 -- Indizes der exportierten Tabellen
@@ -85,7 +91,7 @@ MODIFY `id` int(8) unsigned NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT für Tabelle `login`
 --
 ALTER TABLE `login`
-MODIFY `id` int(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+MODIFY `id` int(8) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
