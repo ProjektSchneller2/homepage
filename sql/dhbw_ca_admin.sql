@@ -17,25 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Datenbank: `dhbw_ca_prod`
+-- Datenbank: `dhbw_ca_admin`
 --
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `cert`
---
-
-CREATE TABLE IF NOT EXISTS `cert` (
-`id` int(8) unsigned NOT NULL,
-  `user` varchar(150) NOT NULL,
-  `csr_pfad` varchar(150) NOT NULL,
-  `crt_pfad` varchar(150) DEFAULT NULL,
-  `laufzeit` varchar(150) DEFAULT NULL,
-  `status` tinyint(1) NOT NULL,
-  `csr_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `crt_timestamp` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -46,25 +29,20 @@ CREATE TABLE IF NOT EXISTS `cert` (
 CREATE TABLE IF NOT EXISTS `login` (
 `id` int(8) unsigned NOT NULL,
   `username` varchar(150) NOT NULL,
-  `passwort` varchar(32) NOT NULL
+  `passwort` varchar(32) NOT NULL,
+  `email` varchar(150) NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Daten für Tabelle `login`
 --
 
-INSERT INTO `login` (`id`, `username`, `passwort`) VALUES
-(1, 'test', '098f6bcd4621d373cade4e832627b4f6');
+INSERT INTO `login` (`id`, `username`, `passwort`, `email`) VALUES
+(1, 'admin', '098f6bcd4621d373cade4e832627b4f6', 'dhbwprojektitsec@gmail.com');
 
 --
 -- Indizes der exportierten Tabellen
 --
-
---
--- Indizes für die Tabelle `cert`
---
-ALTER TABLE `cert`
- ADD PRIMARY KEY (`id`), ADD KEY `user` (`user`), ADD KEY `user_2` (`user`);
 
 --
 -- Indizes für die Tabelle `login`
@@ -76,11 +54,6 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
---
--- AUTO_INCREMENT für Tabelle `cert`
---
-ALTER TABLE `cert`
-MODIFY `id` int(8) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT für Tabelle `login`
 --
