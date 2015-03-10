@@ -7,44 +7,22 @@
 //öffnet eine Session um den Status der Anmeldung zu speichern/abzufragen
 
 session_start();
-//Beispielcode für Anmeldeüberprüfung
-//if (!isset($_SESSION['username']))
-	//	{
-	//		echo "Bitte erst <a href=\"supercert.php\">einloggen</a>";
-	//		exit;
-	//	}
-
-$login = 1;
-//nicht angemeldet
-
-if ($login == 1){
-	include ("../logintemplate.html");
-
+if(!isset($_SESSION["username"]))
+{
+	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
+	exit;
 }
-
-else {
-
-
-	//bereits angemeldet
-	if ($login == 2){
-		
-
-		//include ("xy");
-		if ($login == 2){
+			include ("admintemp.html");
 			//Konsolenbestätigung der CSR-Dateien
 			include ("console.php");
+			echo "<p>&nbsp;</p>";
+			include ("admincertlist.php");
+			echo "<p>&nbsp;</p>";
+			include '../logout.html';
 			
-		}
-		else {
-			echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
-			exit;
+			
+		
 
-		}
-	}
-
-
-
-}
 
 
 //wird evtl. später gebraucht um Seite von dieser Seite aufzubauen
