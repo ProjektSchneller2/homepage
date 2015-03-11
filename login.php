@@ -21,7 +21,7 @@ else {
 if($row->passwort == $passwort) 
     { 
     $_SESSION["username"] = $username; 
-    echo "Login erfolgreich. <br> <a href=\"supercert.php\">supercert.php</a>"; 
+    header('Location: supercert.php'); 
     } 
 else 
     { 

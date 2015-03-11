@@ -23,7 +23,6 @@ if($menge == 0)
 
 	if($eintragen == true)
 	{
-		mkdir ($username, 0700);
 		echo "Benutzername <b>$username</b> wurde erstellt. <a href=\"anmeldung.html\">Login</a>";
 	}
 	else
