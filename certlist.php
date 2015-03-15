@@ -10,7 +10,7 @@ if(!isset($_SESSION["username"]))
 //Datenbankabfrage ob bereits Zertifikate gekauft wurden + Auflistung
 //certcount soll die Anzahl der Zertifikate darstellen, im Mom. noch fest codiert
 $certcount = 5;
-$certstatus = FALSE;
+$certstatus = True;
 
 
 
@@ -37,6 +37,7 @@ $certstatus = FALSE;
 //foreach besser, wenn die zertifikate dann als array ausgelesen werden
 				if ($certstatus !== False){
 					echo "<form action=\"downloadcert.php\" method=\"GET\">";
+					//echo "<input type=\"hidden\" name=\"username\" value=\"".$_SESSION['username']."\">";
 					echo "<input type=\"submit\" name=\"certdownload\" value=\"Download\">";
 					echo "</form>";
 				}

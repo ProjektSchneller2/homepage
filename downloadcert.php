@@ -1,10 +1,12 @@
 <?php
+session_start();
 if(!isset($_SESSION["username"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
 	exit;
 }
-
+else {
+	
 function certdownload($file, $dir, $type) {
 
 	header("Content-Type: $type");
@@ -16,7 +18,7 @@ function certdownload($file, $dir, $type) {
 }
 
 
-$dir = '/www/download/';
+$dir = 'users/'.$_SESSION['username']."/".'intermediateTest2.csr';
 
 $type = 'application/zip';
 
@@ -27,5 +29,7 @@ if(!empty($_GET['file']) && !preg_match('=/=', $_GET['file'])) {
 
 }
 
+//header ('Location: supercert.php');
+}
 
 ?>
