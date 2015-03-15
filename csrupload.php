@@ -3,20 +3,22 @@
 $timestamp = time ();
 $datum = date ( "dmY", $timestamp );
 $uhrzeit = date ( "Hi", $timestamp );
-$ftp_pfad = 'ca/';
+
+
 
 if ($_FILES != Null) {
 	session_start ();
 	
 	/*
-	 * echo "<pre>";
-	 * echo "FILES:<br />";
-	 * print_r ($_FILES );
-	 * echo "</pre>";
-	 * var_dump($_SESSION);
-	 * var_dump($_POST);
-	 */
-	var_dump ( $_SESSION );
+	  echo "<pre>";
+	  echo "FILES:<br />";
+	  print_r ($_FILES );
+	  echo "</pre>";
+	  var_dump($_FILES);
+	  var_dump($_SESSION);
+	  var_dump($_POST);
+	 
+	var_dump ( $_SESSION );*/
 	if ($_FILES ['csruploadfile'] ['name'] != Null) {
 		
 		$zugelassenedateitypen = array (
@@ -27,61 +29,11 @@ if ($_FILES != Null) {
 			echo "<p>Dateitype ist NICHT zugelassen</p>";
 		} else {
 			
-			// Prueft ob das Hauptverzeichnis bereits existiert,
 			
-			if (is_dir ( $ftp_pfad . '/' . $_SESSION ['certtype'] )) {
-				
-				if (is_dir ( $ftp_pfad . '/' . $_SESSION ['certtype'] . '/transfer' )) {
-				} 
-
-				else {
+			
 					
-					if (mkdir ( $ftp_pfad . '/docs/transfer', 0700 )) 
-					{
-						
-				
-					} 
-
-			else 
-					{
-						mkdir($ftp_pfad.'/'.$_SESSION ['certtype']);				
-					}
-				}
-			} 
-
-			else 
-
-			{
-				
-				// Erstellt das Verzeichnis
-				
-				if (mkdir ( $ftp_pfad . '/docs', 0700 )) 
-
-				{
-					
-					echo 'Verzeichnis docs erstellt!';
-				} 
-
-				else 
-
-				{
-					
-					echo 'Error: kann das Verzeichnis docs nicht erstellen! ';
-					
-					return false; // Funktion verlassen
-				}
-				
-				if (mkdir ( $ftp_pfad . '/docs/transfer', 0700 )) {
-					echo 'Verzeichnis transfer erstellt!';
-				} 
-
-				else 
-
-				{
-					echo 'Error: kann das Verzeichnis transfer nicht erstellen! ';
-				}
-			}
-			move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], $_SESSION ['username'] . '/' . $_SESSION ['certtype'] . '/' . $datum . '/' . $uhrzeit . '/' . $_FILES ['csruploadfile'] ['name'] );
+			move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr" );
+			
 			// Mail Adresse muss noch im Webserver in der init hinterlegt werden
 			$empfaenger = "dhbwprojektitsec@gmail.com";
 			$absendername = "CSR Anfrage Formular";
