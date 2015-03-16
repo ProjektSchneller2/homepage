@@ -35,6 +35,7 @@ if ($_FILES != Null) {
 			move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr" );
 			$filepath = 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr";
 			$username = $_SESSION ['username'];
+			$db_timestamp = $datum.$uhrzeit;
 			
 			// Mail Adresse muss noch im Webserver in der init hinterlegt werden
 			$empfaenger = "projektca@gmx.de";
@@ -48,7 +49,7 @@ if ($_FILES != Null) {
 			
 			//Übertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
-			$eintrag = "INSERT INTO cert (user, csr_pfad, status, csr_timestamp) VALUES ('$username', '$filepath', 0, '$timestamp')";
+			$eintrag = "INSERT INTO cert (user, csr_pfad, status, csr_timestamp) VALUES ('$username', '$filepath', 0, '$db_timestamp')";
 			$eintragen = mysqli_query($db, $eintrag);
 			
 			
