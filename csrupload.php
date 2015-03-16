@@ -1,7 +1,7 @@
 
 <?php
 $timestamp = time ();
-$datum = date ( "dmY", $timestamp );
+$datum = date ( "Ymd", $timestamp );
 $uhrzeit = date ( "Hi", $timestamp );
 
 
