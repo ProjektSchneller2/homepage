@@ -49,7 +49,8 @@ if ($_FILES != Null) {
 			
 			//Übertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
-			$eintrag = "INSERT INTO cert (user, csr_pfad, status, csr_timestamp) VALUES ('$username', '$filepath', 0, '$db_timestamp')";
+			$laufzeit = $_SESSION['dauer'];
+			$eintrag = "INSERT INTO cert (user, csr_pfad, laufzeit, status, csr_timestamp) VALUES ('$username', '$filepath', '$laufzeit' , 0, '$db_timestamp')";
 			$eintragen = mysqli_query($db, $eintrag);
 			
 			
