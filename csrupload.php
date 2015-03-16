@@ -33,15 +33,24 @@ if ($_FILES != Null) {
 			
 					
 			move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr" );
+			$filepath = 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr";
+			$username = $_SESSION ['username'];
 			
 			// Mail Adresse muss noch im Webserver in der init hinterlegt werden
-			$empfaenger = "dhbwprojektitsec@gmail.com";
+			$empfaenger = "projektca@gmx.de";
 			$absendername = "CSR Anfrage Formular";
-			$absendermail = "dhbwprojektitsec@gmail.com";
+			$absendermail = "projektca@gmx.de";
 			$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
 			// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
 			$text = "Eine neue CSR wurde hochgeladen.";
 			mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
+			
+			
+			//Übertragen der Zertifikatsdaten in die DB
+			include 'dbconnect.php';
+			$eintrag = "INSERT INTO cert (user, csr_pfad, status, csr_timestamp) VALUES ('$username', '$filepath', 0, '$timestamp')";
+			$eintragen = mysqli_query($db, $eintrag);
+			
 			
 			echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
 			echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
