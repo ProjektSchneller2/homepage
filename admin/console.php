@@ -21,10 +21,10 @@ if ($ergebnis){
 				
 				$stringpart = explode ("/", $zeile['csr_pfad']);	
 				$filename = $stringpart[count($stringpart)-1];
-				$type = explode ("2", $filename);
-					
-				echo "<td>". $type[0] . "</td>";
+				$type = explode ("2", $filename);					
+				
 				echo '<form action="csrcontrol.php" method="POST">';
+				echo "<td>". $type[0] . " <input type=\"hidden\" value=". $type[0] ." name=\"type\"> </td>";
 				echo "<td>". $zeile['user'] . " <input type=\"hidden\" value=". $zeile['user'] ." name=\"user\"> </td>";
 				echo "<td>". $zeile['laufzeit']. " <input type=\"hidden\" value=". $zeile['laufzeit'] ." name=\"laufzeit\"> </td>";				
 				echo "<td>". $zeile['csr_timestamp'] . "</td>";				
