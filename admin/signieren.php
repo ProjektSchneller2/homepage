@@ -1,5 +1,6 @@
 <?php
 	
+	
 	$type = $_POST["type"];
 	$user = $_POST["user"];
 	$laufzeit = $_POST["laufzeit"];
