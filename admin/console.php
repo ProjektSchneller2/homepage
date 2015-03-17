@@ -26,7 +26,7 @@ if ($ergebnis){
 				echo "<td>". $type[0] . "</td>";
 				echo '<form action="csrcontrol.php" method="POST">';
 				echo "<td>". $zeile['user'] . " <input type=\"hidden\" value=". $zeile['user'] ." name=\"user\"> </td>";
-				echo "<td>". $zeile['laufzeit']. " <input type=\"hidden\" value=". $zeile['laufzeit'] ." name=\"laufzeit\"> </td>;				
+				echo "<td>". $zeile['laufzeit']. " <input type=\"hidden\" value=". $zeile['laufzeit'] ." name=\"laufzeit\"> </td>";				
 				echo "<td>". $zeile['csr_timestamp'] . "</td>";				
 				echo "<td>". $zeile['csr_pfad'] . " <input type=\"hidden\" value=". $zeile['csr_pfad'] ." name=\"csr_pfad\"> </td>";
 				echo "<td> <input type=\"submit\" value=\"CSR prüfen\"></td>";
