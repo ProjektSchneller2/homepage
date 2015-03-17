@@ -4,16 +4,16 @@
 		<link href="css/bootstrap.min.css" rel="stylesheet">
 	</head>
 	<body >
-		<div>
+		<div class="container">
 			<h1>Bitte füllen Sie für eine erfolgreiche Anmeldung alle Felder aus :</h1>
 			<form action="login.php" method="POST">
-				<div class="form-group">
+				<div class="col-xs-4">
 					<label for="username">Benutzername</label>
-					<input class="form-control" type="text" size="24" maxlength="50" name="username">
+					<input class="form-control" type="text" size="24" maxlength="50" name="username" placeholder="Anmeldename">
 				</div>
-				<div class0"form-group">
+				<div class="col-xs-4">
 					<label for="password">Passwort</label>
-					<input class="form-control" type="password" size="24" maxlength="50" name="password">
+					<input class="form-control" type="password" size="24" maxlength="50" name="password" placeholder="Passwort">
 				</div>
 				</br>
 				<input class="btn btn-primary" type="submit" name="submitlogin" value="Anmelden">

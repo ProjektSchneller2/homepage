@@ -1,5 +1,7 @@
 
 <?php
+require_once 'header.php';
+echo "<div class=\"container\">";
 $timestamp = time ();
 $datum = date ( "Ymd", $timestamp );
 $uhrzeit = date ( "Hi", $timestamp );
@@ -75,7 +77,7 @@ else {
 	echo "<form name=\"uploadformular\" enctype=\"multipart/form-data\" action=\"csrupload.php\" method=\"post\">";
 	echo "Bitte laden Sie hier Ihre signierte CSR Datei hoch: ";
 	echo "<p><input type=\"file\" name=\"csruploadfile\" size=\"60\" maxlength=\"255\" >";
-	echo "<input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\">";
+	echo "<input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
 	echo "<p>";
 	echo "</form>";
 	echo "</html>";
@@ -88,6 +90,7 @@ else {
 // move_uploaded_file($tmp_name, "data/$name");
 // }
 // }
+echo "</div>";
 ?>
 
 

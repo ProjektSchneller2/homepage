@@ -2,7 +2,7 @@
 session_start();
 require_once 'header.php';
 echo "<div class=\"container\">";
-echo "<h2>Herzlich willkommen bei Supercert!</h2>";
+echo "<h2>Herzlich willkommen bei Supercert ".$_SESSION["username"]."!</h2>";
 
 if(!isset($_SESSION["username"]))
 {

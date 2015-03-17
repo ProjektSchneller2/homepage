@@ -1,6 +1,8 @@
 <?php
 //Einlogdaten + PWHash
 session_start();
+require_once 'header.php';
+echo "<div class=\"container\">";
 ?>
 
 <?php 
@@ -56,5 +58,5 @@ if ($account['password'] == $pw) {
 
 header('Location: supercert.php');
  */
-
+echo "</div>";
 ?>
