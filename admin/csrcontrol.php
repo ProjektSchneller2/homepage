@@ -15,6 +15,7 @@ if(!isset($_SESSION["admin"]))
  $user = $_POST["user"];
  $laufzeit = $_POST["laufzeit"];
  $csrlocation = "../".$_POST["csr_pfad"];
+ $csr_pfad = $_POST["csr_pfad"];
  $type = $_POST["type"];
  
   
@@ -101,6 +102,7 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 		echo "<input type=\"hidden\" value=". $laufzeit ." name=\"laufzeit\">";
 		echo "<input type=\"hidden\" value=". $csrlocation ." name=\"csrlocation\">";
 		echo "<input type=\"hidden\" value=". $type ." name=\"type\">";
+		echo "<input type=\"hidden\" value=". $csr_pfad ." name=\"csr_pfad\">";
 		?>
 	</form>
 </p>

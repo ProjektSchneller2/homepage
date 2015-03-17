@@ -4,6 +4,7 @@
 	$user = $_POST["user"];
 	$laufzeit = $_POST["laufzeit"];
 	$csrlocation = substr($_POST["csrlocation"], 3);
+	$csr_pfad = $_POST['csr_pfad'];
 		
 	$timestamp = time ();
 	$datum = date ( "Ymd", $timestamp );
@@ -14,6 +15,11 @@
 	$pfad = "/var/www/html/users/{$user}/";
 	$pfadcsr = "/var/www/html/".$csrlocation;
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
+	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
+	$crt_timestamp = "{$datum}{$uhrzeit}";
+	
+	//inkludieren der db-verbindung:
+	include '../dbconnect.php';
 
 	
 	//"-name serverca" für normale zertifikate und "-name userca" für subca
@@ -38,6 +44,8 @@
 			
 			
 		}
+					
+		
 	}
 	
 	if ($type == "intermediate");
@@ -107,8 +115,10 @@
 		}
 	}*/
 	
+	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
+	$eintragen = mysqli_query($db, $eintrag);
 	
-	echo "Das $type Zertifikat von User $user mit der Dauer $dauer Tage wurde signiert."
+	echo "Das $type Zertifikat von User $user mit der Dauer $dauer Tage wurde signiert.";
 ?>
 
 <form action="admin.php" method="post"> <input type="submit" value="Back"> </form>
