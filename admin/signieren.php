@@ -16,8 +16,7 @@
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 
 	
-	//Shell-Befehl zum signieren eines Zertifikates
-	//serverca für normale zertifikate und userca für subca
+	//"-name serverca" für normale zertifikate und "-name userca" für subca
  	
 	if ($type == "singlecert");
 	{
@@ -37,7 +36,7 @@
 			fwrite($out, "y\n");
 			fwrite($out, "y\n");
 			
-			//echo stream_get_contents($in);
+			
 		}
 	}
 	
@@ -59,7 +58,7 @@
 			fwrite($out, "y\n");
 			fwrite($out, "y\n");
 			
-			//echo stream_get_contents($in);
+			
 		}
 	}
 	
