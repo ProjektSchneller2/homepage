@@ -1,6 +1,5 @@
 <?php
 	
-	
 	$type = $_POST["type"];
 	$user = $_POST["user"];
 	$laufzeit = $_POST["laufzeit"];
@@ -15,14 +14,7 @@
 	$pfad = "/var/www/html/users/{$user}/";
 	$pfadcsr = "/var/www/html/".$csrlocation;
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
-	
-	//echo "{$user} {$type} {$dauer} {$pfadcsr} {$pfadcert}";
-	//echo "<br>";
-	
-	//Zertifikatsname: /var/www/html/users/User+Zertifikatsart+Datum(yyyymmdd)+Uhrzeit(hhmm).crt
-	
-	$subca = "/etc/ssl/serverca/serverca.pem";
-	$privkey = "/etc/ssl/serverca/servercakey.pem";
+
 	
 	//Shell-Befehl zum signieren eines Zertifikates
 	//serverca für normale zertifikate und userca für subca
