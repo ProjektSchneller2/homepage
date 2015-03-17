@@ -63,7 +63,7 @@ if ($_FILES != Null) {
 			
 			//CNF-Datei generieren
 			//Dateiname
-			$dateiname = "{$user}.cfg";			
+			$dateiname = "test.cfg";			
 			//Falls vorhanden wird diese komplett gelöscht und neu beschrieben
 			$handler = fopen($dateiname , "a+");
 			//Dateiinhalt
