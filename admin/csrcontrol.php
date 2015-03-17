@@ -9,14 +9,18 @@ if(!isset($_SESSION["admin"]))
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
 	exit;
 }
+ 
+ var_dump($_POST);
+ 
+ $user = $_POST["user"];
+ $laufzeit = $_POST["laufzeit"];
+ $csrlocation = "../".$_POST["csr_pfad"];
+ $type = $_POST["type"];
+ 
+  
+ 
 
-$user ="peterle";
 echo "Daten der CSR von Nutzer \"".$user."\":";
-//user + filename noch hartcodiert müssen aus der datenbank ausgelesen werden oder vom vorherigen file mit session übertragen werden
-
-$filename ="wildcard6.csr";
-
-$csrlocation="../users/".$user."/".$filename;
 
 
 $csr = shell_exec('openssl req -noout -text -in '.$csrlocation);
@@ -92,6 +96,12 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 <p>
 	<form action="signieren.php" method="post"> 
 		<input type="submit" value="Signieren"> 
+		<?php
+		echo "<input type=\"hidden\" value=". $user ." name=\"user\">";
+		echo "<input type=\"hidden\" value=". $laufzeit ." name=\"laufzeit\">";
+		echo "<input type=\"hidden\" value=". $csrlocation ." name=\"csrlocation\">";
+		echo "<input type=\"hidden\" value=". $type ." name=\"type\">";
+		?>
 	</form>
 </p>
 

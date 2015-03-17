@@ -1,7 +1,8 @@
 <?php
 session_start();
 require_once 'header.php';
-echo "<h1>Herzlich willkommen bei Supercert!</h1>";
+echo "<div class=\"container\">";
+echo "<h2>Herzlich willkommen bei Supercert!</h2>";
 
 if(!isset($_SESSION["username"]))
 {
@@ -37,7 +38,7 @@ else {
 	//include ("xy");
 	//if ($login == 2){
 	//Begrüßung und Farbe
-	echo "<h2>Sie befinden sich auf Ihrem Kundenprofil:</h2>";
+	echo "<h3>Sie befinden sich auf Ihrem Kundenprofil:</h3>";
 
 		//Liste der bereits erworbenen Zertifikate
 	include ("certlist.php");
@@ -76,4 +77,5 @@ foreach ($template as &$part) {
 
 
 echo implode($homepage)*/
+	echo "</div >";
 ?>
