@@ -78,15 +78,15 @@ else {
     echo "<label for=\"exampleInputFile\">Bitte laden Sie Ihre CSR auf unseren Server:</label>";
 	echo "<form name=\"uploadformular\" enctype=\"multipart/form-data\" action=\"csrupload.php\" method=\"post\">";
 	echo "<p><input type=\"file\" name=\"csruploadfile\" id=\"exampleInputFile\">";
-	echo "<p>DNS: <input type="text" name="dns" /></p>"
-	echo "<p>DNS2: <input type="text" name="dns2" /></p>"
-	echo "<p>DNS3: <input type="text" name="dns3" /></p>"
-	echo "<p>IP: <input type="text" name="ip" /></p>"
-	echo "<p>IP2: <input type="text" name="ip2" /></p>"
-	echo "<p>IP3: <input type="text" name="ip3" /></p>"	
-	echo "<p>E-Mail: <input type="text" name="mail" /></p>"
-	echo "<p>E-Mail2: <input type="text" name="mail2" /></p>"
-	echo "<p>E-Mail3: <input type="text" name="mail3" /></p>"	
+	echo "<p>DNS: <input type=\"text\" name=\"dns\" /></p>"
+	echo "<p>DNS2: <input type=\"text\" name=\"dns2\" /></p>"
+	echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>"
+	echo "<p>IP: <input type=\"text\" name=\"ip\" /></p>"
+	echo "<p>IP2: <input type=\"text\" name=\"ip2\" /></p>"
+	echo "<p>IP3: <input type=\"text\" name=\"ip3\" /></p>"	
+	echo "<p>E-Mail: <input type=\"text\" name=\"mail\" /></p>"
+	echo "<p>E-Mail2: <input type=\"text\" name=\"mail2\" /></p>"
+	echo "<p>E-Mail3: <input type=\"text\" name=\"mail3\" /></p>"	
 	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\"></p>";
 	echo "<p>";
 	echo "</form>";
