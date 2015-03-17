@@ -90,11 +90,11 @@ else {
 		echo "<p>E-Mail2: <input type=\"text\" name=\"mail2\" /></p>";
 		echo "<p>E-Mail3: <input type=\"text\" name=\"mail3\" /></p>";	
 	}
-	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\"></p>";
+	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
 	echo "</form>";
 	
 	echo "<form name=\"cancel\" action=\"supercert.php\" method=\"post\">";
-	echo "<p><br><input type=\"Submit\" name=\"cancel\" value=\"Abbrechen\" class=\"btn btn-primary\"></p>";
+	echo "<br><input type=\"Submit\" name=\"cancel\" value=\"Abbrechen\" class=\"btn btn-primary\"></p>";
 	echo "</form>";
 	echo "</div>";
 	echo "</html>";
