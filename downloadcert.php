@@ -6,7 +6,12 @@ if(!isset($_SESSION["username"]))
 	exit;
 }
 else {
-	
+	$type=".crt";
+	$user=$_SESSION["username"];
+	$validatefile="";
+	$filename="peterleintermediate201503171918";
+	$certpath=$user."/".$filename.$type;
+	/*
 function certdownload($file, $dir, $type) {
 
 	header("Content-Type: $type");
@@ -27,7 +32,7 @@ if(!empty($_GET['file']) && !preg_match('=/=', $_GET['file'])) {
 		makeDownload($_GET['file'], $dir, $type);
 	}
 
-}
+}*/
 header ('Location: supercert.php');
 }
 
