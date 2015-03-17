@@ -59,6 +59,13 @@ if ($_FILES != Null) {
 			echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
 			echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
 			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+			
+			
+			//CNF-Datei generieren
+			
+			
+			
+			
 			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
 			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
 			// echo '</a>';
@@ -78,6 +85,9 @@ else {
     echo "<label for=\"exampleInputFile\">Bitte laden Sie Ihre CSR auf unseren Server:</label>";
 	echo "<form name=\"uploadformular\" enctype=\"multipart/form-data\" action=\"csrupload.php\" method=\"post\">";
 	echo "<p><input type=\"file\" name=\"csruploadfile\" id=\"exampleInputFile\">";
+	
+	
+	//Zusatzeingaben bei dem SAN-Zertifikat
 	if ($_SESSION ['certtype'] == "san")	
 	{
 		echo "<p>DNS: <input type=\"text\" name=\"dns\" /></p>";
