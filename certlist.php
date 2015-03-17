@@ -17,6 +17,7 @@ $abfrage = "SELECT csr_pfad, crt_pfad, status, csr_timestamp FROM cert WHERE use
 $ergebnis = mysqli_query($db, $abfrage);
 
 if ($ergebnis){
+	if (mysqli_num_rows($ergebnis)>0){
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Timestamp</b></td></tr>";
@@ -41,9 +42,13 @@ if ($ergebnis){
 				echo "</tr>";
 			}
 	echo "</table>";
+	
+	}else{
+		echo "Sie haben bisher kein Zertifikat erworben.";
+	}
 
 }else{
-	echo "Bislang haben Sie noch kein Zertifikat erworben";
+	echo "Datenbank sagt nein.";
 }
 
 
