@@ -62,9 +62,36 @@ if ($_FILES != Null) {
 			
 			
 			//CNF-Datei generieren
-			
-			
-			
+			//Dateiname
+			$dateiname = "{$user}.cfg";			
+			//Falls vorhanden wird diese komplett gelöscht und neu beschrieben
+			$handler = fopen($dateiname , "a+");
+			//Dateiinhalt
+			$text = "[req]\n
+					req_extensions = v3_req\n
+					\n
+					[ v3_req ]\n
+					\n
+					# Extensions to add to a certificate request\n
+					\n
+					basicConstraints = CA:FALSE\n
+					keyUsage = nonRepudiation, digitalSignature, keyEncipherment\n
+					subjectAltName = @alt_names\n			
+					\n
+					[alt_names]\n
+					DNS.1 = server1.yourdomain.tld\n
+					DNS.2 = mail.yourdomain.tld\n
+					DNS.3 = www.yourdomain.tld\n
+					IP.1 = www.sub.yourdomain.tld\n
+					IP.2 = mx.yourdomain.tld\n
+					IP.3 = support.yourdomain.tld\n
+					email.1 = test@test.de\n
+					email.2 = test2@test.de\n
+					email.3 = test3@test.de";
+			// Dateiinhalt in die Datei schreiben
+			fwrite($handler , $text);
+			// Datei schließen
+			fclose($handler); 
 			
 			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
 			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
