@@ -27,6 +27,8 @@ if ($selection =="wildcard"){
 	
 	$_SESSION['certtype']="wildcard";
 }
+$_SESSION['dauer']= $_POST["dauer"];
+
 include ("csrupload.php");
 
 ?>

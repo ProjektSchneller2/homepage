@@ -7,9 +7,7 @@ if(!isset($_SESSION["username"]))
 	exit;
 }
 
-//Datenbankabfrage ob bereits Zertifikate gekauft wurden + Auflistung
-//certcount soll die Anzahl der Zertifikate darstellen, im Mom. noch fest codiert
-$certstatus = True;
+
 //Variablen init
 $username = $_SESSION["username"];
 include 'dbconnect.php';
