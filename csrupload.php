@@ -74,12 +74,14 @@ else {
 	// var_dump($_SESSION);
 	// var_dump($_POST);
 	echo "<html>";
+	echo "<div class=\"form-group\">";
+    echo "<label for=\"exampleInputFile\">Bitte laden Sie Ihre CSR auf unseren Server:</label>";
 	echo "<form name=\"uploadformular\" enctype=\"multipart/form-data\" action=\"csrupload.php\" method=\"post\">";
-	echo "Bitte laden Sie hier Ihre signierte CSR Datei hoch: ";
-	echo "<p><input type=\"file\" name=\"csruploadfile\" size=\"60\" maxlength=\"255\" >";
-	echo "<input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
+	echo "<p><input type=\"file\" name=\"csruploadfile\" id=\"exampleInputFile\">";
+	echo "<p><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\"></p>";
 	echo "<p>";
 	echo "</form>";
+	echo "</div>";
 	echo "</html>";
 }
 
