@@ -44,12 +44,12 @@ if ($_FILES != Null) {
 			$absendername = "CSR Anfrage Formular";
 			$absendermail = "projektca@gmx.de";
 			$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
-			// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
+			// Auf Nennung des Users wird aus SicherheitsgrÃ¼nden verzichtet, da die Information direkt im Adminpanel bereitsteht
 			$text = "Eine neue CSR wurde hochgeladen.";
 			mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 			
 			
-			//Übertragen der Zertifikatsdaten in die DB
+			//Ãœbertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
 			$laufzeit = $_SESSION['dauer'];
 			$eintrag = "INSERT INTO cert (user, csr_pfad, laufzeit, status, csr_timestamp) VALUES ('$username', '$filepath', '$laufzeit' , 0, '$db_timestamp')";
@@ -57,8 +57,8 @@ if ($_FILES != Null) {
 			
 			
 			echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
-			echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
-			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+			echo "<p>Als nÃ¤chstes werden wir Ihre Anfrage prÃ¼fen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
+			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand kÃ¶nnen Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
 			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
 			// echo '</a>';
@@ -74,12 +74,23 @@ else {
 	// var_dump($_SESSION);
 	// var_dump($_POST);
 	echo "<html>";
+	echo "<div class=\"form-group\">";
+    echo "<label for=\"exampleInputFile\">Bitte laden Sie Ihre CSR auf unseren Server:</label>";
 	echo "<form name=\"uploadformular\" enctype=\"multipart/form-data\" action=\"csrupload.php\" method=\"post\">";
-	echo "Bitte laden Sie hier Ihre signierte CSR Datei hoch: ";
-	echo "<p><input type=\"file\" name=\"csruploadfile\" size=\"60\" maxlength=\"255\" >";
-	echo "<input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
+	echo "<p><input type=\"file\" name=\"csruploadfile\" id=\"exampleInputFile\">";
+	echo "<p>DNS: <input type=\"text\" name=\"dns\" /></p>";
+	echo "<p>DNS2: <input type=\"text\" name=\"dns2\" /></p>";
+	echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>";
+	echo "<p>IP: <input type=\"text\" name=\"ip\" /></p>";
+	echo "<p>IP2: <input type=\"text\" name=\"ip2\" /></p>";
+	echo "<p>IP3: <input type=\"text\" name=\"ip3\" /></p>";	
+	echo "<p>E-Mail: <input type=\"text\" name=\"mail\" /></p>";
+	echo "<p>E-Mail2: <input type=\"text\" name=\"mail2\" /></p>";
+	echo "<p>E-Mail3: <input type=\"text\" name=\"mail3\" /></p>";	
+	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\"></p>";
 	echo "<p>";
 	echo "</form>";
+	echo "</div>";
 	echo "</html>";
 }
 
