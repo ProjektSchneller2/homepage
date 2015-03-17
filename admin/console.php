@@ -14,17 +14,18 @@ if ($submitrequest !== Null){
 		while ($submitrequest >= 1){
 			//in den jeweiligen tds müssen dann die jeweiligen pendants der datenbank eingefügt werden
 			echo "<tr>";
-			echo "<td>";
-			echo "CSR Anfrage";
-			echo "</td>";
+				echo "<td>";
+				echo "CSR Anfrage";
+				echo "</td>";
 					echo "<td>";
-							echo "Zertifikatsart";
-									echo "</td>";
-									echo "<td>";
-									echo "<a href=\"csrcontrol.php\">CSR prüfen</a>";
-									echo "</td>";
+					echo "Zertifikatsart";
+					echo "</td>";
+							echo "<td>";
+							echo "<a href=\"csrcontrol.php\">CSR prüfen</a>";
+							echo "</td>";
 									
-						echo "</tr>";
+									
+			echo "</tr>";
 		
 						$submitrequest=$submitrequest-1;
 		}

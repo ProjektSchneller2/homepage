@@ -1,33 +1,25 @@
 <!DOCTYPE html>
-<!-- test -->
 <html>
-<body >
-<div>
-<h1>Bitte füllen Sie für eine erfolgreiche Anmeldung alle Felder aus :</h1>
-<form action="login.php" method="POST">
-<tr>
-<td>Benutzername</td>
-<td>
-<input type="text" size="24" maxlength="50"
-name="username">
-</td>
-</tr>
-<tr>
-<td>Passwort</td>
-<td>
-<input type="password" size="24" maxlength="50"
-name="password">
-</td>
-</tr>
-<tr>
-<td colspan="2">
-<input type="submit" name="submitlogin" value="Anmelden">
-</td>
-</tr>
-<tr>
-<a href=registrierung.html>zur Registrierung</a>
-</tr>
-</form>
-</div>
-</body>
+	<head>
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+	</head>
+	<body >
+		<div>
+			<h1>Bitte füllen Sie für eine erfolgreiche Anmeldung alle Felder aus :</h1>
+			<form action="login.php" method="POST">
+				<div class="form-group">
+					<label for="username">Benutzername</label>
+					<input class="form-control" type="text" size="24" maxlength="50" name="username">
+				</div>
+				<div class0"form-group">
+					<label for="password">Passwort</label>
+					<input class="form-control" type="password" size="24" maxlength="50" name="password">
+				</div>
+				</br>
+				<input class="btn btn-primary" type="submit" name="submitlogin" value="Anmelden">
+			</form>
+			</br>
+			<a href=registrierung.html>zur Registrierung</a>
+		</div>
+	</body>
 </html>
