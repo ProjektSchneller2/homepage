@@ -8,6 +8,7 @@
 
 session_start();
 require_once '../header.php';
+echo "<div class=\"container\">";
 $_SESSION['backend']=True;
 if(!isset($_SESSION["admin"]))
 {
@@ -44,4 +45,5 @@ if(!isset($_SESSION["admin"]))
 
 
  echo implode($homepage)*/
+			echo "</div>"
 ?>
