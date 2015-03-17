@@ -28,8 +28,7 @@ if(!empty($_GET['file']) && !preg_match('=/=', $_GET['file'])) {
 	}
 
 }
-
-//header ('Location: supercert.php');
+header ('Location: supercert.php');
 }
 
 ?>

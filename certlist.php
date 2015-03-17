@@ -34,7 +34,7 @@ if ($ergebnis){
 				}else{
 					echo "<form action=\"downloadcert.php\" method=\"GET\">";
 					echo "<input type=\"hidden\" name=\"crt_pfad\" value=\"".$zeile['crt_pfad']."\">";
-					echo "<td><input type=\"submit\" name=\"certdownload\" value=\"Download\" class=\"btn btn-primary\"></td>";
+					echo "<td><input type=\"submit\" name=\"certdownload\" value=\"Download\"></td>";
 					echo "</form>";
 				}
 				echo "<td>". $zeile['csr_timestamp'] . "</td>";
