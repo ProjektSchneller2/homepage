@@ -10,8 +10,8 @@ $passwort = md5($_POST["password"]); //@TODO: PHP 5.5 and above: change to $pass
 									 //@TODO: set database column to length 255, delete all users, register new
 
 //get database record for user
-$stmt = $mysqli->prepare("SELECT username, passwort, freischaltung FROM login WHERE username LIKE ? LIMIT 1");
-$stmt->bind_param("s", mysql_real_escape_string($username));
+$stmt = $db->prepare("SELECT username, passwort, freischaltung FROM login WHERE username LIKE ? LIMIT 1");
+$stmt->bind_param("s", $username);
 $stmt->execute();
 $res = $stmt->get_result();
 $row = $res->fetch_object();
