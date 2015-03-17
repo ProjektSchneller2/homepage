@@ -1,8 +1,7 @@
 <?php
 session_start();
-?>
-
-<?php
+require_once 'header.php';
+echo "<h1>Herzlich willkommen bei Supercert!</h1>";
 
 if(!isset($_SESSION["username"]))
 {
@@ -38,7 +37,8 @@ else {
 	//include ("xy");
 	//if ($login == 2){
 	//Begrüßung und Farbe
-	include ("template.html");
+	echo "<h2>Sie befinden sich auf Ihrem Kundenprofil:</h2>";
+
 		//Liste der bereits erworbenen Zertifikate
 	include ("certlist.php");
 	//Auswahl der kaufbaren Zertifikate

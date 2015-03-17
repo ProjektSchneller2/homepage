@@ -7,6 +7,8 @@
 //öffnet eine Session um den Status der Anmeldung zu speichern/abzufragen
 
 session_start();
+require_once '../header.php';
+$_SESSION['backend']=True;
 if(!isset($_SESSION["admin"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";

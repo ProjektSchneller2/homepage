@@ -1,6 +1,9 @@
 <?php
 
+
 session_start();
+require_once '../header.php';
+$_SESSION['backend']=True;
 if(!isset($_SESSION["admin"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
@@ -29,31 +32,37 @@ $parts= explode (', ', $subject);
 
 echo "<p>&nbsp;</p>";
 echo "<table class=\"table table-striped\">";
-$country= $parts[0];
+$countryextend= $parts[0];
+$country=str_replace("C=","",$countryextend);
 //echo "<p>&nbsp;</p>";
 echo "<tr><td>Land:</td><td> ".$country."</td></tr>";
 //echo "<p>&nbsp;</p>";
 
-$state=$parts['1'];
+$stateextend=$parts['1'];
+$state=str_replace("ST=","",$stateextend);
 echo "<tr><td>Bundesland:</td><td> ".$state."</td></tr>";
 //echo "<p>&nbsp;</p>";
 
-$location=$parts['2'];
+$locationextend=$parts['2'];
+$location=str_replace("L=","",$locationextend);
 echo "<tr><td>Ort:</td><td>".$location."</td></tr>";
 //echo "<p>&nbsp;</p>";
 
-$O=$parts['3'];
+$Oextend=$parts['3'];
+$O=str_replace("O=","",$Oextend);
 echo "<tr><td>Name des Unternehmens:</td><td> ".$O."</td></tr>";
 //echo "<p>&nbsp;</p>";
 
-$OU=$parts['4'];
+$OUextend=$parts['4'];
+$OU=str_replace("OU=","",$OUextend);
 echo "<tr><td>Organisationseinheit:</td><td> ".$OU."</td></tr>";
 //echo "<p>&nbsp;</p>";
 
-$commonnameextend= $parts['5'];
-$commonnamepart=explode(" ",$commonnameextend);
-$commonname=$commonnamepart[0];
-echo "<tr><td>Commonname</td><td> ".$commonname."</td></tr>";
+$commonnameextended= $parts['5'];
+$commonnamepart=explode(" ",$commonnameextended);
+$commonnameextend=$commonnamepart[0];
+$commonname=str_replace("CN=","",$commonnameextend);
+echo "<tr><td>Commonname:</td><td> ".$commonname."</td></tr>";
 
 
 echo "</table>";

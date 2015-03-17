@@ -18,7 +18,7 @@ $ergebnis = mysqli_query($db, $abfrage);
 
 if ($ergebnis){
 
-	echo '<table border="1" style="border-radius: 15px; border-width:10px; border-color:#66CC66; border-style:ridge; padding:5px; width: 900px;">';
+	echo "<table class=\"table table-striped\">";
 	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Timestamp</b></td></tr>";
 	while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 		{

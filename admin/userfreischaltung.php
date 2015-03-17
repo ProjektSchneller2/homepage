@@ -6,7 +6,7 @@ $abfrage = "SELECT username, freischaltung, email FROM login WHERE freischaltung
 $ergebnis = mysqli_query($db, $abfrage);
 
 
-echo '<table border="1" style="border-radius: 15px; border-width:10px; border-color:#66CC66; border-style:ridge; padding:5px; width: 900px;">';
+echo "<table class=\"table table-striped\">";;
 while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 	{
 			echo "<tr>";
