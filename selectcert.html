@@ -4,20 +4,21 @@
 </head>
 <body>
 	<div>
-<h3>Ein neues Zertifikat können Sie hier generieren.</h3>
+<h3>Ein neues Zertifikat kÃ¶nnen Sie hier generieren.</h3>
 <form action="selectcert.php" method="POST">
   <tr style="height:50px;">
-  <td >Sie können zwischen drei Zertifikaten wählen:
+  <td >Sie kÃ¶nnen zwischen drei Zertifikaten wÃ¤hlen:
   </td>
   <td>
     <select name="selectcert" size="1">
     <option value="singlecert">Einfaches Zertifikat</option>
       <option value="intermediate">Intermidiate Zertifikat</option>
       <option value="wildcard">Wildcard Zertifikat</option>
-      
+      <option value="san">SAN Zertifikat</option>
+	  
     </select>
     </td>
-    <td>Gültigkeitsdauer in Tagen:</td>
+    <td>GÃ¼ltigkeitsdauer in Tagen:</td>
     <td><input name="dauer" type="number" min="1" max="9999" step="1" value="1"></td>
     <td>
     <input type="submit" name="selectcertsubmit" value="weiter" style="border-radius: 5px; border: 0.5px; width: 100px; height:25px; font-family: Arial; background: #f4f4f4;">
@@ -27,7 +28,7 @@
 </div>
 <div style="height:80px;">
 </div>
-<!--  wird nicht mehr benötigt
+<!--  wird nicht mehr benÃ¶tigt
 <div>
 <form action="logout.php" method="POST">
   <tr>
