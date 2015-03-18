@@ -13,6 +13,7 @@ $abfrage = "SELECT user, csr_pfad, laufzeit, csr_timestamp, crt_pfad, crt_timest
 $ergebnis = mysqli_query($db, $abfrage);
 
 if ($ergebnis){
+	if (mysqli_num_rows($ergebnis)>0) {
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr>
@@ -46,9 +47,13 @@ if ($ergebnis){
 		echo "</tr>";
 	}
 	echo "</table>";
+	
+	}else{
+		echo "Derzeit liegt keine Anfrage vor!";
+	}
 
 }else{
-	echo "Derzeit liegt keine Anfrage vor!";
+	echo "Datenbank sagt nein.";
 }
 
 
