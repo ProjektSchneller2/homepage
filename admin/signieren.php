@@ -128,6 +128,30 @@
 	$eintragen = mysqli_query($db, $eintrag);
 	
 	echo "Das $type Zertifikat von User $user mit der Dauer $dauer Tage wurde signiert.";
+	
+	//email versand
+	
+	$username =$_SESSION["user"];
+	
+	$abfrage = "SELECT email FROM login WHERE username LIKE '$username' LIMIT 1";
+	$ergebnis = mysqli_query($db, $abfrage);
+	$row = mysqli_fetch_object ($ergebnis);
+	$email = $row->email;
+	
+	
+	
+	
+	//Mail versand
+	$empfaenger =$email;
+	$absendername = "Supercert GmbH";
+	$absendermail = "projektca@gmx.de";
+	$betreff = "Ihr Zertifikat wurde erstellt";
+	$text = "Ihr Zertifikat wurde soeben signiert und ist nun in Ihrem Kundenprofil verfügbar";
+	
+	// Auf Nennung des Users wird aus SicherheitsgrÃ¼nden verzichtet, da die Information direkt im Adminpanel bereitsteht
+	
+	mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
+	
 ?>
 
 <form action="admin.php" method="post"> <input type="submit" value="Back"> </form>
