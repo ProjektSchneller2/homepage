@@ -119,6 +119,9 @@ echo "<p>Die Antwort beginnt mit:</p>".$cancelmailcontent;
 	<form action="canceled.php" method="post"> 
 		<textarea name="cancel" cols="50" rows="10"></textarea>
 		<br>
-		<input type="submit" value="Nicht signieren"> 
+		<input type="submit" value="Nicht signieren">
+		<?php 
+		echo "<input type=\"hidden\" value=". $csr_pfad ." name=\"csr_pfad\">";
+		?> 
 	</form>
 </p>

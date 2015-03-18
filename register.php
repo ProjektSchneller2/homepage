@@ -1,5 +1,5 @@
 <?php
-include 'dbconnect.php';
+include 'header.php';
 
 $username = $_POST["username"];
 $email = $_POST["email"];
@@ -8,7 +8,7 @@ $passwort2 = $_POST["passwort2"];
 
 if($passwort != $passwort2 OR $username == "" OR $passwort == "" OR $email == "")
 {
-	echo "Eingabefehler. Bitte alle Felder korekt ausfüllen. <a href=\"registrierung.html\">Zurück</a>";
+	echo "<p class=\"bg-danger\">Eingabefehler. Bitte alle Felder korekt ausfÃ¼llen. <a href=\"registrierung.html\">ZurÃ¼ck</a></p>";
 	exit;
 }
 $passwort = md5($passwort);
@@ -23,11 +23,11 @@ if($menge == 0)
 
 	if($eintragen == true)
 	{
-		echo "Benutzername <b>$username</b> wurde erstellt. <a href=\"anmeldung.html\">Login</a>";
+		echo "<p class=\"bg-success\">Benutzername <b>$username</b> wurde erstellt. <a href=\"anmeldung.html\">Login</a></p>";
 	}
 	else
 	{
-		echo "Fehler beim Speichern des Benutzernames. <a href=\"registrierung.html\">Zurück</a>";
+		echo "<p class=\"bg-danger\">Fehler beim Speichern des Benutzernames. <a href=\"registrierung.html\">ZurÃ¼ck</a>"</p>;
 	}
 
 
@@ -35,6 +35,6 @@ if($menge == 0)
 
 else
 {
-echo "Benutzername schon vorhanden. <a href=\"registrierung.html\">Zurück</a>";
+echo "<p class=\"bg-danger\">Benutzername schon vorhanden. <a href=\"registrierung.html\">ZurÃ¼ck</a></p>";
     }
 		?>

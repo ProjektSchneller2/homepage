@@ -8,16 +8,16 @@ $passwort = md5($_POST["password"]); //@TODO: PHP 5.5 and above: change to $pass
 									 //@TODO: set database column to length 255, delete all users, register new
 
 //get database record for user
-$stmt = $db->prepare("SELECT username, passwort, freischaltung FROM login WHERE username LIKE ? LIMIT 1");
-$stmt->bind_param("s", $username);
-$stmt->execute();
-$res = $stmt->get_result();
-$row = $res->fetch_object();
+$stmt = mysqli_prepare ($db, "SELECT username, passwort, freischaltung FROM login WHERE username LIKE ? LIMIT 1");
+mysqli_stmt_bind_param($stmt, "s", $username);
+mysqli_stmt_execute ($stmt);
+$res = mysqli_stmt_get_result ($stmt);
+$row = mysqli_fetch_array ($res);
 
 //is user unlocked
-if ($row->freischaltung == 1) {
+if ($row["freischaltung"] == 1) {
 	//verify password
-	if ($row->passwort == $passwort) {//@TODO: if (password_verify($passwort, $row->passwort)) { Login success } 
+	if ($row["passwort"] == $passwort) {//@TODO: if (password_verify($passwort, $row->passwort)) { Login success } 
 		$_SESSION["username"] = $username; 
 		header('Location: supercert.php'); 
 	} else { 
