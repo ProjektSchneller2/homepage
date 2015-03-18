@@ -10,7 +10,7 @@ if(!isset($_SESSION["admin"]))
 	exit;
 }
  
- var_dump($_POST);
+ //var_dump($_POST);
  
  $user = $_POST["user"];
  $laufzeit = $_POST["laufzeit"];
@@ -107,21 +107,13 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 	</form>
 </p>
 
-<p>
-	<h3>Bitte geben Sie einen Grund ein, warum die vorliegende CSR-Datei fehlerhaft ist:</h3>	
 	
-<?php 
-$cancelmailcontent="<p>Sehr geehrte Damen und Herren,</p>Leider müssen wir Ihre CSR ablehnen, der Grund lautet wie folgt:<p>&nbsp;</p>";
-
-echo "<p>Die Antwort beginnt mit:</p>".$cancelmailcontent;
-
-?>
+<p>
 	<form action="canceled.php" method="post"> 
-		<textarea name="cancel" cols="50" rows="10"></textarea>
-		<br>
-		<input type="submit" value="Nicht signieren">
+				<input type="submit" value="Nicht signieren">
 		<?php 
 		echo "<input type=\"hidden\" value=". $csr_pfad ." name=\"csr_pfad\">";
 		?> 
 	</form>
+</p>
 </p>
