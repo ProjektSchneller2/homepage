@@ -49,9 +49,10 @@ if ($_FILES != Null) {
 			mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 			
 			
-			//Ãœbertragen der Zertifikatsdaten in die DB
+			//Übertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
 			$laufzeit = $_SESSION['dauer'];
+			$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
 			$eintrag = "INSERT INTO cert (user, csr_pfad, laufzeit, status, csr_timestamp) VALUES ('$username', '$filepath', '$laufzeit' , 0, '$db_timestamp')";
 			$eintragen = mysqli_query($db, $eintrag);
 			
