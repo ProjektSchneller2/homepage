@@ -71,10 +71,11 @@ if ($_FILES != Null) {
 		if($_SESSION ['certtype'] == "san")
 		{
 						//CNF-Dateigerüst kopieren
-			shell_exec('cb /var/www/html/sanconfig/san.cnf /var/www/html/users/testsan.cnf');
+			$from = "/var/www/html/sanconfig/san.cnf";
+			$to = "/var/www/html/users/testsan/san.cnf";
+			copy($from, $to);
 			
-			//CNF-Datei umbennen in txt
-			shell_exec('mv /var/www/html/users//var/www/html/users/testsan.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
+		
 			/*
 			//SAN eingaben in variable packen
 			$saninput = "[ alt_names ]
