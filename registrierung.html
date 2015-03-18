@@ -1,39 +1,25 @@
 <!DOCTYPE html>
 <html>
-<div>
+<head>
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<title>Registrierung</title>
+</head>
 <body>
-<h1>Bitte füllen Sie für eine erfolgreiche Registrierung alle Felder aus :</h1>
+<h1>Bitte fÃ¼llen Sie fÃ¼r eine erfolgreiche Registrierung alle Felder aus:</h1>
 
 <form action="register.php" method="post">
-Dein Username:<br>
-<input type="text" size="24" maxlength="50"
-name="username"><br>
+<label for="username">Dein Username:</label>
+<input type="text" size="24" maxlength="50" name="username" id="username" required>
 
-E-Mail-Adresse:<br>
-<input type="email" size="24" maxlength="100"
-name="email"><br><br>
+<label for="email">E-Mail-Adresse:</label>
+<input type="email" size="24" maxlength="100" name="email" id="email" required>
 
-Dein Passwort:<br>
-<input type="password" size="24" maxlength="50"
-name="passwort"><br>
+<label for="passwort">Dein Passwort:</label>
+<input type="password" size="24" maxlength="50" name="passwort" id="passwort" required>
 
-Passwort wiederholen:<br>
-<input type="password" size="24" maxlength="50"
-name="passwort2"><br>
+<label for="passwort2">Passwort wiederholen:</label>
+<input type="password" size="24" maxlength="50" name="passwort2" id="passwort2" required>
 
-<!-- <tr>
-<p>Common Name (CN):<br><input name="common name" type="text" size="30" maxlength="30"></p>
-			<p>Organization (O):<br><input name="organization" type="text" size="30" maxlength="40"></p>
-			<p>Organizsation Unit (OU):<br><input name="organization unit" type="text" size="30" maxlength="40"></p>
-			<p>Location (L):<br><input name="location" type="text" size="30" maxlength="40"></p>
-			<p>State (S oder ST):<br><input name="state" type="text" size="30" maxlength="40"></p>
-			<p>Country (C):<br><input name="country" type="text" size="30" maxlength="40"></p>
-</tr> -->
-<tr>
-<td colspan="2">
-<input type="submit" name="submitlogin" value="Registrieren">
-</td>
-</tr>
-</form>
-</div>
+<input type="submit" name="submitlogin" class="btn btn-primary" value="Registrieren">
+
 </html>
