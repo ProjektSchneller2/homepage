@@ -82,7 +82,7 @@ if ($_FILES != Null) {
 			$saninput = "\n[ alt_names ]
 DNS.1 = {$_POST["dns"]}
 DNS.2 = {$_POST["dns2"]}
-DNS.2 = {$_POST["dns3"]}"
+DNS.3 = {$_POST["dns3"]}"
 ;
 			
 			//CNF-Datei mit den Usereingaben füllen
