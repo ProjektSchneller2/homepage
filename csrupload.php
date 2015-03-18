@@ -61,35 +61,28 @@ if ($_FILES != Null) {
 			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 			
 			
-			//CNF-Datei generieren
-			//Dateiname
-			$dateiname = "test.cfg";			
-			//Falls vorhanden wird diese komplett gelöscht und neu beschrieben
-			$handler = fopen($dateiname , "a+");
-			//Dateiinhalt
-			$text = "[req]
-req_extensions = v3_req
-					
-[ v3_req ]
-# Extensions to add to a certificate request\n
-basicConstraints = CA:FALSE
-keyUsage = nonRepudiation, digitalSignature, keyEncipherment
-subjectAltName = @alt_names			
-					
-[alt_names]
-DNS.1 = server1.yourdomain.tld
-DNS.2 = mail.yourdomain.tld
-DNS.3 = www.yourdomain.tld
-IP.1 = www.sub.yourdomain.tld
-IP.2 = mx.yourdomain.tld
-IP.3 = support.yourdomain.tld
-email.1 = test@test.de
-email.2 = test2@test.de
-email.3 = test3@test.de";
-			// Dateiinhalt in die Datei schreiben
-			fwrite($handler , $text);
-			// Datei schließen
-			fclose($handler); 
+			//CNF-Dateigerüst kopieren
+			shell_exec('cb /var/www/config/san.cnf /var/www/html/users/' .$username);
+			
+			//CNF-Datei umbennen
+			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf');
+			
+			//SAN eingaben in variable packen
+			$saninput = "[ alt_names ]
+DNS.1 = {$_POST["dns"]}
+DNS.2 = {$_POST["dns2"]}
+DNS.2 = {$_POST["dns3"]}
+IP.1 = {$_POST["ip"]}
+IP.2 = {$_POST["ip2"]}
+IP.3 = {$_POST["ip3"]}
+email.1 = {$_POST["mail"]}
+email.2 = {$_POST["mail2"]}
+email.3 = {$_POST["mail3"]}";
+			
+			//CNF-Datei mit den Usereingaben füllen
+			$inhalt = file_get_contents("/var/www/html/users/{$username}.cnf");
+			file_put_contents("{$username}.cnf", $inhalt .= "{$saninput}");
+			
 			
 			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
 			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
