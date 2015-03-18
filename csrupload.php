@@ -71,11 +71,11 @@ if ($_FILES != Null) {
 		if($_SESSION ['certtype'] == "san")
 		{
 						//CNF-Dateigerüst kopieren
-			shell_exec('cb /var/www/html/sanconfig/san.cnf /var/www/html/users/' .$username. '/' .$username. '.cnf');
+			shell_exec('cb /var/www/html/sanconfig/san.cnf /var/www/html/users/testsan.cnf');
 			
 			//CNF-Datei umbennen in txt
-			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
-			
+			shell_exec('mv /var/www/html/users//var/www/html/users/testsan.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
+			/*
 			//SAN eingaben in variable packen
 			$saninput = "[ alt_names ]
 DNS.1 = {$_POST["dns"]}
@@ -93,7 +93,7 @@ email.3 = {$_POST["mail3"]}";
 			file_put_contents("{$username}.cnf", $inhalt .= "{$saninput}");
 			
 			//Datei umbennen in cnf
-			//shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');
+			//shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');*/
 		}
 		
 	}
