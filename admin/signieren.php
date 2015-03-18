@@ -94,7 +94,7 @@
 		}
 	}
 
-	/*if ($type == "san");  
+	if ($type == "san");  
 	{
 		//SAN Zertifikat --> CNF-Datei löschen
 		//Zertifikatsname: /var/www/html/users/user+san+datum(yyyymmdd)+uhrzeit(hhmm).crt
@@ -115,7 +115,7 @@
 			//echo stream_get_contents($in);
 		}
 		shell_exec('rm ' .$pfadcnf);
-	}*/
+	}
 	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
 	$eintragen = mysqli_query($db, $eintrag);
