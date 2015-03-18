@@ -1,6 +1,6 @@
+
 <?php
-// wird includet also kein header benötigt momentan
-//require_once 'header.php';
+require_once 'header.php';
 echo "<div class=\"container\">";
 $timestamp = time ();
 $datum = date ( "Ymd", $timestamp );
@@ -62,11 +62,19 @@ if ($_FILES != Null) {
 			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 			
 			
-			//CNF-Dateigerüst kopieren
+		
+			
+			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
+			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
+			// echo '</a>';
+		}
+		if($_SESSION ['certtype'] == "san")
+		{
+						//CNF-Dateigerüst kopieren
 			shell_exec('cb /var/www/config/san.cnf /var/www/html/users/' .$username);
 			
-			//CNF-Datei umbennen
-			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf');
+			//CNF-Datei umbennen in txt
+			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
 			
 			//SAN eingaben in variable packen
 			$saninput = "[ alt_names ]
@@ -81,14 +89,13 @@ email.2 = {$_POST["mail2"]}
 email.3 = {$_POST["mail3"]}";
 			
 			//CNF-Datei mit den Usereingaben füllen
-			$inhalt = file_get_contents("/var/www/html/users/{$username}.cnf");
+			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.txt");
 			file_put_contents("{$username}.cnf", $inhalt .= "{$saninput}");
 			
-			
-			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
-			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
-			// echo '</a>';
+			//Datei umbennen in cnf
+			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');
 		}
+		
 	}
 } 
 
