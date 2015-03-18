@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once 'header.php';
 echo "<div class=\"container\">";
 echo "<h2>Herzlich willkommen bei Supercert ".$_SESSION["username"]."!</h2>";
@@ -10,9 +9,9 @@ if(!isset($_SESSION["username"]))
 	exit;
 }
 
-//Testseite für index-Startseite
-//loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt
-//öffnet eine Session um den Status der Anmeldung zu speichern/abzufragen
+//Testseite fÃ¼r index-Startseite
+//loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geÃ¤ndert werden - eingeloggt, ausgeloggt
+//Ã¶ffnet eine Session um den Status der Anmeldung zu speichern/abzufragen
 
 
 /*
@@ -37,7 +36,7 @@ else {
 	
 	//include ("xy");
 	//if ($login == 2){
-	//Begrüßung und Farbe
+	//BegrÃ¼ÃŸung und Farbe
 	echo "<h3>Sie befinden sich auf Ihrem Kundenprofil:</h3>";
 
 		//Liste der bereits erworbenen Zertifikate
@@ -48,7 +47,7 @@ else {
 /*
 	}
 else {
-	echo "Ein Fehler ist während Ihrer Anmeldung aufgetreten";
+	echo "Ein Fehler ist wÃ¤hrend Ihrer Anmeldung aufgetreten";
 	exit;
 	
 }
@@ -62,7 +61,7 @@ else {
 */
 	
 	
-//wird evtl. später gebraucht um Seite von dieser Seite aufzubauen
+//wird evtl. spÃ¤ter gebraucht um Seite von dieser Seite aufzubauen
 /*
 $homepage = get_homepage_parts('./homepage.html');
 //Template Tags ersetzen
