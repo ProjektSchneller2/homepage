@@ -6,13 +6,16 @@ if(!isset($_SESSION["username"]))
 	exit;
 }
 else {
-	$type=".crt";
+	
+	
 	$user=$_SESSION["username"];
-	$filename="peterleintermediate201503171918";
-	$certpath=$user."/".$filename.$type;
+
+	$certpath=$_GET['crt_pfad'];
+	$stringpart = explode("/", $certpath);
+	$filename = $stringpart[count($stringpart)-1];
 	
 	header ("Content-Type:application/x-x509-ca-cert");
-	header("Content-Disposition: attachment; filename=\"$filename.$type\"");
+	header("Content-Disposition: attachment; filename=\"$filename\"");
 	readfile($certpath);
 	
 	exit;
