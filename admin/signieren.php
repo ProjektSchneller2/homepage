@@ -114,7 +114,7 @@
 			
 			//echo stream_get_contents($in);
 		}
-		shell_exec('rm ' .$pfadcnf);
+		//shell_exec('rm ' .$pfadcnf);
 	}
 	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
