@@ -13,6 +13,7 @@
 	$dauer = $laufzeit;
 	$cert = "wildcard1_cert.pem";
 	$pfad = "/var/www/html/users/{$user}/";
+	$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
 	$pfadcsr = "/var/www/html/".$csrlocation;
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
@@ -103,7 +104,7 @@
 			1 => array("pipe", "w")
 		);
 
-		$process = proc_open('openssl ca -name serverca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert, $descriptors, $pipes);
+		$process = proc_open('openssl ca -policy policy_anything -out ' .$pfadcert.  ' -config ' .$pfadcnf. ' -extensions v3_req -days ' .$dauer. ' -in ' .$pfadcsr, $descriptors, $pipes);
 
 		if(is_resource($process)) {
 			list ($out, $in) = $pipes;

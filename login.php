@@ -23,10 +23,10 @@ if ($row->freischaltung == 1) {
 		$_SESSION["username"] = $username; 
 		header('Location: supercert.php'); 
 	} else { 
-		echo "Benutzername und/oder Passwort waren falsch. <a href=\"login.html\">Login</a>"; 
+		echo "Benutzername und/oder Passwort waren falsch. <a href=\"anmeldung.html\">Login</a>"; 
 	} 
 } else { //freischaltung != 1 -> 0 or something different (because of error in database type etc.)
-	echo "Ihr Account wurde noch nicht freigeschaltet. <a href=\"login.html\">Login</a>";
+	echo "Ihr Account wurde noch nicht freigeschaltet. <a href=\"anmeldung.html\">Login</a>";
 }
 
 echo "</div>";
