@@ -1,10 +1,10 @@
 <?php
 include 'header.php';
 
-$username = $_POST["username"];
-$email = $_POST["email"];
-$passwort = $_POST["passwort"];
-$passwort2 = $_POST["passwort2"];
+$username = mysqli_real_escape_string ($db, $_POST["username"]);
+$email = mysqli_real_escape_string ($db, $_POST["email"]);
+$passwort = mysqli_real_escape_string ($db, $_POST["passwort"]);
+$passwort2 = mysqli_real_escape_string ($db, $_POST["passwort2"]);
 
 if($passwort != $passwort2 OR $username == "" OR $passwort == "" OR $email == "")
 {
@@ -27,7 +27,7 @@ if($menge == 0)
 	}
 	else
 	{
-		echo "<p class=\"bg-danger\">Fehler beim Speichern des Benutzernames. <a href=\"registrierung.html\">Zurück</a>"</p>;
+		echo "<p class=\"bg-danger\">Fehler beim Speichern des Benutzernames. <a href=\"registrierung.html\">Zurück</a></p>";
 	}
 
 
