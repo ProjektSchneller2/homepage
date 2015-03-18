@@ -79,7 +79,7 @@ if ($_FILES != Null) {
 			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/{$username}.cnf");
 			
 			//SAN eingaben in variable packen
-			$saninput = "[ alt_names ]
+			$saninput = "\n[ alt_names ]
 DNS.1 = {$_POST["dns"]}
 DNS.2 = {$_POST["dns2"]}
 DNS.2 = {$_POST["dns3"]}"
