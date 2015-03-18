@@ -49,7 +49,7 @@ if ($_FILES != Null) {
 			mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 			
 			
-			//�bertragen der Zertifikatsdaten in die DB
+			//Übertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
 			$laufzeit = $_SESSION['dauer'];
 			$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
@@ -71,10 +71,10 @@ if ($_FILES != Null) {
 		if($_SESSION ['certtype'] == "san")
 		{
 						//CNF-Dateigerüst kopieren
-			shell_exec('cb /var/www/config/san.cnf /var/www/html/users/' .$username);
+			//shell_exec('cb /var/www/config/san.cnf /var/www/html/users/' .$username. '/');
 			
 			//CNF-Datei umbennen in txt
-			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
+			//shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
 			
 			//SAN eingaben in variable packen
 			$saninput = "[ alt_names ]
@@ -93,7 +93,7 @@ email.3 = {$_POST["mail3"]}";
 			file_put_contents("{$username}.cnf", $inhalt .= "{$saninput}");
 			
 			//Datei umbennen in cnf
-			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');
+			//shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');
 		}
 		
 	}
