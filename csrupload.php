@@ -83,12 +83,7 @@ if ($_FILES != Null) {
 DNS.1 = {$_POST["dns"]}
 DNS.2 = {$_POST["dns2"]}
 DNS.2 = {$_POST["dns3"]}
-IP.1 = {$_POST["ip"]}
-IP.2 = {$_POST["ip2"]}
-IP.3 = {$_POST["ip3"]}
-email.1 = {$_POST["mail"]}
-email.2 = {$_POST["mail2"]}
-email.3 = {$_POST["mail3"]}";
+;
 			
 			//CNF-Datei mit den Usereingaben füllen
 			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.cnf");
@@ -120,12 +115,7 @@ else {
 		echo "<p>DNS: <input type=\"text\" name=\"dns\" /></p>";
 		echo "<p>DNS2: <input type=\"text\" name=\"dns2\" /></p>";
 		echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>";
-		echo "<p>IP: <input type=\"text\" name=\"ip\" /></p>";
-		echo "<p>IP2: <input type=\"text\" name=\"ip2\" /></p>";
-		echo "<p>IP3: <input type=\"text\" name=\"ip3\" /></p>";	
-		echo "<p>E-Mail: <input type=\"text\" name=\"mail\" /></p>";
-		echo "<p>E-Mail2: <input type=\"text\" name=\"mail2\" /></p>";
-		echo "<p>E-Mail3: <input type=\"text\" name=\"mail3\" /></p>";	
+	
 	}
 	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
 	echo "</form>";
