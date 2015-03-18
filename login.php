@@ -1,9 +1,7 @@
 <?php
 //Einlogdaten + PWHash
-session_start();
 require_once 'header.php';
 echo "<div class=\"container\">"; //@TODO: needed?
-include 'dbconnect.php';
 
 $username = $_POST["username"]; 
 $passwort = md5($_POST["password"]); //@TODO: PHP 5.5 and above: change to $passwort = password_hash($passwort, PASSWORD_DEFAULT);
