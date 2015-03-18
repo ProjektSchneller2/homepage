@@ -94,8 +94,12 @@
 		}
 	}
 
+	
+	
 	if ($type == "san");  
 	{
+	
+	
 		//SAN Zertifikat --> CNF-Datei löschen
 		//Zertifikatsname: /var/www/html/users/user+san+datum(yyyymmdd)+uhrzeit(hhmm).crt
 			
@@ -105,7 +109,7 @@
 		);
 
 		$process = proc_open('openssl ca -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr, $descriptors, $pipes);
-
+				
 		if(is_resource($process)) {
 			list ($out, $in) = $pipes;
 			
@@ -116,7 +120,7 @@
 		}
 		
 		
-		echo unlink("{$pfadcnf}");
+		//echo unlink("{$pfadcnf}"); 
 		
 	}
 	
