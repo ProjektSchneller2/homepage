@@ -8,8 +8,7 @@ if(!isset($_SESSION["username"]))
 else {
 	
 	
-	$user=$_SESSION["username"];
-
+	
 	$certpath=$_GET['crt_pfad'];
 	$stringpart = explode("/", $certpath);
 	$filename = $stringpart[count($stringpart)-1];
