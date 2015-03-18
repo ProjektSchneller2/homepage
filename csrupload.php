@@ -71,7 +71,7 @@ if ($_FILES != Null) {
 		if($_SESSION ['certtype'] == "san")
 		{
 						//CNF-Dateigerüst kopieren
-			shell_exec('cb /var/www/html/sanconfig/san.cnf /var/www/html/users/' .$username. '/');
+			shell_exec('cb /var/www/html/sanconfig/san.cnf /var/www/html/users/' .$username. '/' .$username. '.cnf');
 			
 			//CNF-Datei umbennen in txt
 			shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.cnf /var/www/html/users/' .$username. '/' .$username. '.txt');
@@ -89,7 +89,7 @@ email.2 = {$_POST["mail2"]}
 email.3 = {$_POST["mail3"]}";
 			
 			//CNF-Datei mit den Usereingaben füllen
-			$inhalt = file_get_contents(/var/www/html/users/{$username}/{$username}".txt");
+			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.txt");
 			file_put_contents("{$username}.cnf", $inhalt .= "{$saninput}");
 			
 			//Datei umbennen in cnf
