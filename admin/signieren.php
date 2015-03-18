@@ -104,7 +104,7 @@
 			1 => array("pipe", "w")
 		);
 
-		$process = proc_open('openssl ca -policy policy_anything -out ' .$pfadcert.  ' -config ' .$pfadcnf. ' -extensions v3_req -days ' .$dauer. ' -in ' .$pfadcsr, $descriptors, $pipes);
+		$process = proc_open('openssl ca -policy policy_anything -out ' .$pfadcert.  ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr. ' -days ' .$dauer, $descriptors, $pipes);
 
 		if(is_resource($process)) {
 			list ($out, $in) = $pipes;
@@ -114,7 +114,7 @@
 			
 			//echo stream_get_contents($in);
 		}
-		//shell_exec('rm ' .$pfadcnf);
+		
 	}
 	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
