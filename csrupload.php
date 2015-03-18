@@ -72,7 +72,7 @@ if ($_FILES != Null) {
 		{
 						//CNF-Dateigerüst kopieren
 			$from = "/var/www/html/sanconfig/san.cnf";
-			$to = "/var/www/html/users/testsan/san.cnf";
+			$to = "/var/www/html/users/san";
 			copy($from, $to);
 			
 		
