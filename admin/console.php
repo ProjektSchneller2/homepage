@@ -12,6 +12,7 @@ $abfrage = "SELECT user, csr_pfad, laufzeit, csr_timestamp FROM cert WHERE statu
 $ergebnis = mysqli_query($db, $abfrage);
 
 if ($ergebnis){
+	if (mysqli_num_rows($ergebnis)>0){
 
 	echo "<table class=\"table table-striped\">";
 	echo "<tr><td><b>CSR-Typ</b></td><td><b>User</b></td><td><b>Laufzeit</b></td><td><b>Timestamp</b></td><td><b>CSR-Pfad</b></td><td><b>CSR prüfen</b></td></tr>";
@@ -34,9 +35,13 @@ if ($ergebnis){
 				echo "</tr>";
 			}
 	echo "</table>";
+	
+	}else{
+		echo "Derzeit liegt keine Anfrage vor!";
+	}
 
 }else{
-	echo "Derzeit liegt keine Anfrage vor!";
+	echo "Datenbank sagt nein.";
 }
 
 
