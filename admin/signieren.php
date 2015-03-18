@@ -104,7 +104,7 @@
 			1 => array("pipe", "w")
 		);
 
-		$process = proc_open('openssl ca -policy policy_anything -out ' .$pfadcert.  ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr. ' -days ' .$dauer, $descriptors, $pipes);
+		$process = proc_open('openssl ca -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr, $descriptors, $pipes);
 
 		if(is_resource($process)) {
 			list ($out, $in) = $pipes;
