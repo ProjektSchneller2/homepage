@@ -1,6 +1,6 @@
-
 <?php
-require_once 'header.php';
+// wird includet also kein header benötigt momentan
+//require_once 'header.php';
 echo "<div class=\"container\">";
 $timestamp = time ();
 $datum = date ( "Ymd", $timestamp );
