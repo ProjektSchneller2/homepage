@@ -4,6 +4,7 @@
 session_start();
 require_once '../header.php';
 $_SESSION['backend']=True;
+echo "<div class=\"container\">";
 if(!isset($_SESSION["admin"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
@@ -12,7 +13,8 @@ if(!isset($_SESSION["admin"]))
  
  //var_dump($_POST);
  
- $user = $_POST["user"];
+ $_SESSION["user"] = $_POST["user"];
+ $user=$_SESSION["user"];
  $laufzeit = $_POST["laufzeit"];
  $csrlocation = "../".$_POST["csr_pfad"];
  $csr_pfad = $_POST["csr_pfad"];
@@ -117,3 +119,4 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 	</form>
 </p>
 </p>
+</div>
