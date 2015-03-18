@@ -1,5 +1,5 @@
 <?php
-
+require_once 'header.php';
 
 if(!isset($_SESSION["username"]))
 {
@@ -10,7 +10,7 @@ if(!isset($_SESSION["username"]))
 
 //Variablen init
 $username = $_SESSION["username"];
-include 'dbconnect.php';
+
 
 //DB-Abfrage
 $abfrage = "SELECT csr_pfad, crt_pfad, status, csr_timestamp FROM cert WHERE user LIKE '$username'";
@@ -55,13 +55,13 @@ if ($ergebnis){
 /* 
  * 
  * 
-//Prüfung ob Zertifikate gekauft werden
+//PrÃ¼fung ob Zertifikate gekauft werden
 		if ($certcount !== Null){
 			
 			//Darstellung als Liste/Tabelle
 			echo "<table style=\"border-radius: 15px; border-width:10px; border-color:#66CC66; border-style:ridge; padding:5px; width: 900px;\">";
 			while ($certcount >= 1){
-				//in den jeweiligen tds müssen dann die jeweiligen pendants der datenbank eingefügt werden
+				//in den jeweiligen tds mÃ¼ssen dann die jeweiligen pendants der datenbank eingefÃ¼gt werden
 				echo "<tr>";
 				echo "<td>";
 				echo "$certcount";
@@ -73,7 +73,7 @@ if ($ergebnis){
 				echo "Zertifikatsdownload";
 				echo "</td>";
 				echo "<td>";
-				// vorläufige codierung ohne Datenbankzugriff - statusmeldung
+				// vorlÃ¤ufige codierung ohne Datenbankzugriff - statusmeldung
 				
 //foreach besser, wenn die zertifikate dann als array ausgelesen werden
 				if ($certstatus !== False){
