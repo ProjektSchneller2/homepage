@@ -15,8 +15,8 @@
 	$pfad = "/var/www/html/users/{$user}/";
 	$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
 	$pfadcsr = "/var/www/html/".$csrlocation;
-	$pfadCA = "/var/www/html/";
-	$pfadKey = "/var/www/html/";
+	$pfadCA = "/etc/ssl/serverca/serverca.pem";
+	$pfadKey = "/etc/ssl/serverca/private/servercakey.pem";
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_timestamp = "{$datum}{$uhrzeit}";
