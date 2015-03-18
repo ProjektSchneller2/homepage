@@ -115,6 +115,9 @@
 			//echo stream_get_contents($in);
 		}
 		
+		
+		echo unlink("{$pfadcnf}");
+		
 	}
 	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
