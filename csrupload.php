@@ -72,11 +72,11 @@ if ($_FILES != Null) {
 		{
 						//CNF-Dateigerüst kopieren
 			$from = "/var/www/html/sanconfig/san.cnf";
-			$to = "/var/www/html/users/san";
+			$to = "/var/www/html/users/puchi/san.cnf";
 			copy($from, $to);
 			
 		
-			/*
+			
 			//SAN eingaben in variable packen
 			$saninput = "[ alt_names ]
 DNS.1 = {$_POST["dns"]}
@@ -90,11 +90,11 @@ email.2 = {$_POST["mail2"]}
 email.3 = {$_POST["mail3"]}";
 			
 			//CNF-Datei mit den Usereingaben füllen
-			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.txt");
-			file_put_contents("{$username}.cnf", $inhalt .= "{$saninput}");
+			$inhalt = file_get_contents("/var/www/html/users/puchi/san.cnf");
+			file_put_contents("/var/www/html/users/puchi/san.cnf", $inhalt .= "{$saninput}");
 			
 			//Datei umbennen in cnf
-			//shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');*/
+			//shell_exec('mv /var/www/html/users/' .$username. '/' .$username. '.txt /var/www/html/users/' .$username. '/' .$username. '.cnf');
 		}
 		
 	}
