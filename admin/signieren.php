@@ -15,6 +15,8 @@
 	$pfad = "/var/www/html/users/{$user}/";
 	$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
 	$pfadcsr = "/var/www/html/".$csrlocation;
+	$pfadCA = "/var/www/html/";
+	$pfadKey = "/var/www/html/";
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_timestamp = "{$datum}{$uhrzeit}";
@@ -23,7 +25,7 @@
 	include '../dbconnect.php';
 
 	
-	//"-name serverca" für normale zertifikate und "-name userca" für subca
+	//"-name serverca" fÃ¼r normale zertifikate und "-name userca" fÃ¼r subca
  	
 	if ($type == "singlecert");
 	{
@@ -34,8 +36,14 @@
 			0 => array("pipe", "r"),
 			1 => array("pipe", "w")
 		);
-
-		$process = proc_open('openssl ca -name serverca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert, $descriptors, $pipes);
+		#erstellung des Certs mit x509
+		#Falls funktioniert, c&p auf wildcard und SAN
+		$process = proc_open('openssl.exe x509 -req -CA '.$pfadCA.' -CAkey '.$pfadKey.' -CAcreateserial -in '.$pfadcsr.' -out '.$pfadcert.' -days 365 -extensions v3_req -extfile '.$pfadcnf.'');
+		#Backup mit ca Befehl
+		#$process = proc_open('openssl ca -batch -in '.$pfadcsr.' -out '.$pfadcert.' -days 365 -cert '.$pfadCA.' -keyfile '.$pfadKey.' -config '.$pfadcnf.' -extensions v3_req');
+		
+		#Original Schnulf Code
+		#$process = proc_open('openssl ca -name serverca -in ' .$pfadcsr.' -days ' .$dauer. ' -out ' .$pfadcert, $descriptors, $pipes);
 
 		if(is_resource($process)) {
 			list ($out, $in) = $pipes;
@@ -47,28 +55,6 @@
 		}
 					
 		
-	}
-	
-	if ($type == "intermediate");
-	{
-		//Intermediate Zertifikat
-		//Zertifikatsname: /var/www/html/users/user+intermediate+datum(yyyymmdd)+uhrzeit(hhmm).pem
-			
-		$descriptors = array(
-			0 => array("pipe", "r"),
-			1 => array("pipe", "w")
-		);
-
-		$process = proc_open('openssl ca -name userca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert, $descriptors, $pipes);
-
-		if(is_resource($process)) {
-			list ($out, $in) = $pipes;
-			
-			fwrite($out, "y\n");
-			fwrite($out, "y\n");
-			
-			
-		}
 	}
 	
 	
@@ -100,7 +86,7 @@
 	{
 	
 	
-		//SAN Zertifikat --> CNF-Datei löschen
+		//SAN Zertifikat --> CNF-Datei lÃ¶schen
 		//Zertifikatsname: /var/www/html/users/user+san+datum(yyyymmdd)+uhrzeit(hhmm).crt
 			
 		$descriptors = array(
@@ -146,9 +132,9 @@
 	$absendername = "Supercert GmbH";
 	$absendermail = "projektca@gmx.de";
 	$betreff = "Ihr Zertifikat wurde erstellt";
-	$text = "Ihr Zertifikat wurde soeben signiert und ist nun in Ihrem Kundenprofil verf�gbar";
+	$text = "Ihr Zertifikat wurde soeben signiert und ist nun in Ihrem Kundenprofil verfügbar";
 	
-	// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
+	// Auf Nennung des Users wird aus SicherheitsgrÃ¼nden verzichtet, da die Information direkt im Adminpanel bereitsteht
 	
 	mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 	
