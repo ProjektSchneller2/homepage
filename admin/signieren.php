@@ -177,6 +177,7 @@ Xf9UkpsBLlf1KOQh2PzCb8eAxklbTTvjUvjfoE3FMAQWnUWpiZRjcINOSifpH2G0
 AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 -----END CERTIFICATE-----";
 
+/*
 	//"-name serverca" fÃ¼r normale zertifikate und "-name userca" fÃ¼r subca
  	if ($type == "singlecert"){
 		shell_exec('openssl ca -batch -name serverca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
@@ -211,6 +212,12 @@ AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 		$text = file_get_contents("{$pfadcert}");
 		file_put_contents("{$pfadcert}", $text .= "{$textinputserverca}");
 	}
+*/	
+	
+	$csr = shell_exec('openssl req -noout -text -in /var/www/test.csr');
+	$pos = strpos("{$csr}","www");
+	
+	echo "<br><br>{$pos}<br><br>";
 	
 	shell_exec('rm /etc/ssl/serverca/index.txt');
 	shell_exec('touch /etc/ssl/serverca/index.txt');
@@ -332,7 +339,7 @@ AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 	$empfaenger = $row->email;
 		
 	//Mail content
-	$text = "Sehr geehrte Damen und Herren,\n \nIhre CSR wurde akzeptiert! \n\nSie können Ihr fertiges Zertifikat nun ihn Ihrem Kundenprofil herunterladen. \n\nMit freundlichen Grüsse Ihre Supercert GmbH";
+	$text = "Sehr geehrte Damen und Herren,\n \nIhre CSR wurde akzeptiert! \n\nSie kï¿½ï¿½n Ihr fertiges Zertifikat nun ihn Ihrem Kundenprofil herunterladen. \n\nMit freundlichen Grï¿½ï¿½ Ihre Supercert GmbH";
 	
 	//Mail versand
 	$absendername = "Supercert GmbH";
