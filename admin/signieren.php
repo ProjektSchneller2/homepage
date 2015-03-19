@@ -44,10 +44,11 @@
 		shell_exec('openssl ca -batch -name serverca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
 	}
 	
+	/*
 	if ($type == "san"){
 		shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
 	}
-/*	
+	
 	if ($type == "singlecert"){
 		//Einfaches Zertifikat
 		//Zertifikatsname: /var/www/html/users/user+einfaches+datum(yyyymmdd)+uhrzeit(hhmm).crt
@@ -116,7 +117,7 @@
 		}
 	}
 
-	
+	*/
 	
 	if ($type == "san"){
 	
@@ -145,7 +146,7 @@
 		
 	}
 	
-*/
+
 	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
 	$eintragen = mysqli_query($db, $eintrag);
