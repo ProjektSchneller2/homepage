@@ -21,12 +21,14 @@ if ($ergebnis){
 
 	echo "<table class=\"table table-striped\">";
 	
-	if (!isset($zeile['status'])){
+	if (isset($zeile['status'])){
+		if($zeile['status']==1){
 	$renew="<td><b>Verlängern</b></td>";}
 	else{
 		$renew="";
 	}
-	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Datum</b></td>".$renew."</tr>";
+	}
+	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Uploaddatum</b></td><td>G&uuml;ltig bis</td>".$renew."</tr>";
 	while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 		{
 				echo "<tr>";
@@ -50,6 +52,7 @@ if ($ergebnis){
 					echo "<td><input type=\"submit\" name=\"certdownload\" value=\"Download\" class=\"btn btn-success\"></td>";
 					echo "</form>";
 				}
+				echo "<td>".$docday." / ".$docmonth." / ".$docyear." | ".$dochour.":".$docmin."</td>";
 				echo "<td>".$docday." / ".$docmonth." / ".$docyear." | ".$dochour.":".$docmin."</td>";
 				if ($zeile['status'] == 1){
 					echo "<form action=\"renew.php\" method=\"POST\">";
