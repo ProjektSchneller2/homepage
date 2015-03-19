@@ -33,6 +33,10 @@ if (! isset($_SESSION)){
 			echo "<p>Dateitype ist NICHT zugelassen</p>";
 		} else {
 			
+			if (isset($_POST['singlecertwildcard'])){
+				$_SESSION ['certtype'] = 'singlecertwildcard';
+			}
+			
 			$filepath = 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr";
 			$db_timestamp = $datum.$uhrzeit;
 			$username = $_SESSION ['username'];
@@ -138,6 +142,19 @@ else {
 		echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>";
 	
 	}
+	
+	//Zusatzeingaben beim Singlecert-Zertifikat
+	if ($_SESSION ['certtype'] == "singlecert"){
+		echo "<p>";
+		echo "<div class=\"checkbox\">";
+		echo "<label>";
+		echo "<input type=\"checkbox\" name=\"singlecertwildcard\"> Wildcard beantragen/hinzuf&uuml;gen";
+		echo "</label>";
+		echo "</div>";
+		echo "</p>";
+	}
+	
+	
 	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
 	echo "</form>";
 	
