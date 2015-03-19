@@ -52,9 +52,12 @@ if ($ergebnis){
 				}
 				echo "<td>".$docday." / ".$docmonth." / ".$docyear." | ".$dochour.":".$docmin."</td>";
 				if ($zeile['status'] == 1){
-					echo "<form action=\"certrenew.php\" method=\"POST\">";
-				
-				echo "<td><input type=\"submit\" name=\"certrenew\" value=\"Verlängern\" class=\"btn btn-info\"></td>";
+					echo "<form action=\"renew.php\" method=\"POST\">";
+				echo "<input type=\"hidden\" name=\"csr_pfad\" value=\"".$zeile['csr_pfad']."\">";
+				echo "<input type=\"hidden\" name=\"crt_pfad\" value=\"".$zeile['crt_pfad']."\">";
+				echo "<input type=\"hidden\" name=\"username\" value=\"".$username."\">";
+				echo "<input type=\"hidden\" name=\"type\" value=\"".$type[0]."\">";
+				echo "<td><input type=\"submit\" name=\"renew\" value=\"Verlängern\" class=\"btn btn-info\"></td>";
 				echo "</form>";
 				
 				}

@@ -125,7 +125,7 @@ else {
 		echo "<p>IP: <input type=\"text\" name=\"ip3\" /></p>";
 		echo "<p>DNS: <input type=\"text\" name=\"dns\" /></p>";		
 		echo "<p>DNS2: <input type=\"text\" name=\"dns2\" /></p>";
-		echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>";*/
+		echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>";
 	
 	}
 	echo "<p><br><input type=\"Submit\" name=\"csrupload\" value=\"Datei hochladen\" class=\"btn btn-primary\">";
