@@ -103,7 +103,11 @@ else {
 	// var_dump($_SESSION);
 	// var_dump($_POST);
 	echo "<html>";
+	echo "<div class=\"container\">";
+	echo "<p>&nbsp;</p>";
 	echo "<div class=\"form-group\">";
+	
+	echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>2.</b></td><td style=\"padding-left:10px;\"><b>Ben&ouml;tigte Informationen</b></td></tr></table><p>&nbsp;</p>";
     echo "<label for=\"exampleInputFile\">Bitte laden Sie Ihre CSR auf unseren Server:</label>";
 	echo "<form name=\"uploadformular\" enctype=\"multipart/form-data\" action=\"csrupload.php\" method=\"post\">";
 	echo "<p><input type=\"file\" name=\"csruploadfile\" id=\"exampleInputFile\">";
@@ -124,7 +128,13 @@ else {
 	echo "<br><input type=\"Submit\" name=\"cancel\" value=\"Abbrechen\" class=\"btn btn-primary\"></p>";
 	echo "</form>";
 	echo "</div>";
+	echo "</div>";
 	echo "</html>";
+}
+if ($_SESSION ['certtype'] == "intermediate")
+{
+	echo "<h2 class=\"alert alert-danger\">Wichtiger Hinweis!</h2>";
+	echo "<p>Ein Intermediate Zertifikat berechtigt zur Signierung weiterer Zertifikate und ist dadurch sehr <strong>m&auml;chtig</strong>.</p>Um uns und unsere Kunden bzw. die ausgestellten Zertifikate zu sch&uuml;tzen werden wir Intermediate Zertifikat nur an <br><strong>vertrauensw&uuml;rdige, ausgew&auml;hlte,  Kunden, wie z.B. &Ouml;ffentliche Einrichtungen, Forschungseinrichtungen, etc. vergeben.</strong><br>Wir pr&uuml;fen jede Anfrage einzeln und benachrichtigen Sie über unsere Entscheidung.";
 }
 
 // foreach ($_FILES["csr"]["error"] as $key => $error) {
@@ -134,7 +144,8 @@ else {
 // move_uploaded_file($tmp_name, "data/$name");
 // }
 // }
-echo "</div>";
+
+
 ?>
 
 

@@ -2,7 +2,7 @@
 session_start();
 require_once "dbconnect.php";
 
-if($_SESSION['backend']==True){$admin="../";}
+if(isset($_SESSION['backend']) && $_SESSION['backend']==True){$admin="../";}
 else{$admin="";}
 echo "<!DOCTYPE html><html>";
 echo "<head>";

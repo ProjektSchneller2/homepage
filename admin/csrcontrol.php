@@ -100,11 +100,11 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 	<form action="signieren.php" method="post"> 
 		<input type="submit" value="Signieren"> 
 		<?php
-		echo "<input type=\"hidden\" value=". $user ." name=\"user\">";
-		echo "<input type=\"hidden\" value=". $laufzeit ." name=\"laufzeit\">";
-		echo "<input type=\"hidden\" value=". $csrlocation ." name=\"csrlocation\">";
-		echo "<input type=\"hidden\" value=". $type ." name=\"type\">";
-		echo "<input type=\"hidden\" value=". $csr_pfad ." name=\"csr_pfad\">";
+		echo "<input type=\"hidden\" value=\"{$user}\" name=\"user\">";
+		echo "<input type=\"hidden\" value=\"{$laufzeit}\" name=\"laufzeit\">";
+		echo "<input type=\"hidden\" value=\"{$csrlocation}\" name=\"csrlocation\">";
+		echo "<input type=\"hidden\" value=\"{$type}\" name=\"type\">";
+		echo "<input type=\"hidden\" value=\"{$csr_pfad}\" name=\"csr_pfad\">";
 		?>
 	</form>
 </p>
@@ -114,7 +114,7 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 	<form action="canceled.php" method="post"> 
 				<input type="submit" value="Nicht signieren">
 		<?php 
-		echo "<input type=\"hidden\" value=". $csr_pfad ." name=\"csr_pfad\">";
+		echo "<input type=\"hidden\" value=\"{$csr_pfad}\" name=\"csr_pfad\">";
 		?> 
 	</form>
 </p>

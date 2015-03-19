@@ -20,7 +20,13 @@ if ($ergebnis){
 	if (mysqli_num_rows($ergebnis)>0){
 
 	echo "<table class=\"table table-striped\">";
-	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Timestamp</b></td></tr>";
+	
+	if ($zeile['status'] !== 0){
+	$renew="<td><b>Verlängern</b></td>";}
+	else{
+		$renew="";
+	}
+	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Datum</b></td>".$renew."</tr>";
 	while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 		{
 				echo "<tr>";
@@ -28,6 +34,12 @@ if ($ergebnis){
 				$stringpart = explode ("/", $zeile['csr_pfad']);	
 				$filename = $stringpart[count($stringpart)-1];
 				$type = explode ("2", $filename);
+				$docdateunstructured=$zeile['csr_timestamp'];
+				$dochour=substr($docdateunstructured, -4, 2);
+				$docmin=substr($docdateunstructured, -2);
+				$docyear=substr($docdateunstructured, -12, 4);
+				$docday=substr($docdateunstructured, -6, 2);
+				$docmonth=substr($docdateunstructured, -8, 2);
 					
 				echo "<td>". $type[0] . "</td>";
 				if ($zeile['status'] == 0){
@@ -38,7 +50,13 @@ if ($ergebnis){
 					echo "<td><input type=\"submit\" name=\"certdownload\" value=\"Download\" class=\"btn btn-success\"></td>";
 					echo "</form>";
 				}
-				echo "<td>". $zeile['csr_timestamp'] . "</td>";
+				echo "<td>".$docday." / ".$docmonth." / ".$docyear." | ".$dochour.":".$docmin."</td>";
+				if ($zeile['status'] !== 0){
+					echo "<form action=\"certrenew.php\" method=\"POST\">";
+				
+				echo "<td><input type=\"submit\" name=\"certrenew\" value=\"certrenew\" class=\"btn btn-info\"></td>";
+				echo "</form>";
+				}
 				echo "</tr>";
 			}
 	echo "</table>";
