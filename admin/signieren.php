@@ -37,7 +37,7 @@
 	}
 	
 	if ($type == "intermediate"){
-		shell_exec('openssl ca -batch -name userca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
+		shell_exec('openssl ca -batch -name usr_cert -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
 	}
 	
 	if ($type == "wildcard"){
