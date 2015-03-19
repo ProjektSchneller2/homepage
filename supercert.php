@@ -9,7 +9,7 @@ else{
 	$username="";
 }
 
-echo "<h2>Herzlich willkommen bei Supercert".$username."!</h2>";
+echo "<h2>Herzlich willkommen bei Supercert ".$username."!</h2>";
 if(!isset($_SESSION["username"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";

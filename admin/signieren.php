@@ -1,4 +1,15 @@
 <?php
+
+require_once '../header.php';
+echo "<div class=\"container\">";
+$_SESSION['backend']=True;
+
+if(!isset($_SESSION["admin"]))
+{
+	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
+	exit;
+}
+
 	
 	$type = $_POST["type"];
 	$user = $_POST["user"];
@@ -179,6 +190,9 @@
 	mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 	
 	echo "Das $type Zertifikat von User $user mit der Dauer $dauer Tage wurde signiert.";
+	echo "<form action=\"admin.php\" method=\"post\"> <input type=\"submit\" value=\"Back\"> </form>";
+	echo "</div>";
 ?>
 
-<form action="admin.php" method="post"> <input type="submit" value="Back"> </form>
+
+

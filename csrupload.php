@@ -9,7 +9,9 @@ $uhrzeit = date ( "Hi", $timestamp );
 
 
 if ($_FILES != Null) {
-	session_start ();
+if (! isset($_SESSION)){
+	session_start();
+}
 	
 	/*
 	  echo "<pre>";
@@ -39,7 +41,7 @@ if ($_FILES != Null) {
 			$username = $_SESSION ['username'];
 			$db_timestamp = $datum.$uhrzeit;
 			
-			// Mail Adresse muss noch im Webserver in der init hinterlegt werden
+			// Mail Notification für Admin
 			$empfaenger = "projektca@gmx.de";
 			$absendername = "CSR Anfrage Formular";
 			$absendermail = "projektca@gmx.de";
@@ -55,8 +57,8 @@ if ($_FILES != Null) {
 			$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
 			$eintrag = "INSERT INTO cert (user, csr_pfad, laufzeit, status, csr_timestamp) VALUES ('$username', '$filepath', '$laufzeit' , 0, '$db_timestamp')";
 			$eintragen = mysqli_query($db, $eintrag);
-			
-			
+			echo "<p>&nbsp;</p>";
+			echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>3.</b></td><td style=\"padding-left:10px;\"><b>Pr&uuml;fung der CSR</b></td></tr></table><p>&nbsp;</p>";
 			echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
 			echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
 			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";

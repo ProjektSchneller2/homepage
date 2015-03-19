@@ -6,7 +6,9 @@
 //loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt
 //öffnet eine Session um den Status der Anmeldung zu speichern/abzufragen
 
-session_start();
+if (! isset($_SESSION)){
+	session_start();
+}
 require_once '../header.php';
 echo "<div class=\"container\">";
 $_SESSION['backend']=True;

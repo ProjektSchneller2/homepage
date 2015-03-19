@@ -1,6 +1,6 @@
 <?php
 include 'header.php';
-
+echo "<div class=\"container\"><p>&nbsp;</p>";
 $username = mysqli_real_escape_string ($db, $_POST["username"]);
 $email = mysqli_real_escape_string ($db, $_POST["email"]);
 $passwort = mysqli_real_escape_string ($db, $_POST["passwort"]);
@@ -37,4 +37,5 @@ else
 {
 echo "<p class=\"bg-danger\">Benutzername schon vorhanden. <a href=\"registrierung.html\">Zurück</a></p>";
     }
+    echo "</div>";
 		?>

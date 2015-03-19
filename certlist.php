@@ -21,7 +21,7 @@ if ($ergebnis){
 
 	echo "<table class=\"table table-striped\">";
 	
-	if ( $zeile['status']==0){
+	if (!isset($zeile['status'])){
 	$renew="<td><b>Verlängern</b></td>";}
 	else{
 		$renew="";

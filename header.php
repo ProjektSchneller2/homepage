@@ -1,5 +1,7 @@
 <?php 
-session_start();
+if (! isset($_SESSION)){
+	session_start();
+}
 require_once "dbconnect.php";
 
 if(isset($_SESSION['backend']) && $_SESSION['backend']==True){$admin="../";}
