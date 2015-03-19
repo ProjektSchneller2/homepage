@@ -3,6 +3,7 @@ require_once 'header.php';
 if (! isset($_SESSION)){
 	session_start();
 }
+echo "<div class=\"container\">";
 if(!isset($_SESSION["username"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
@@ -37,7 +38,7 @@ if (isset($_POST['renew'])){
 
 	$type=$_POST['type'];
 	
-echo "<div class=\"container\">";
+
 echo "<p>&nbsp;</p>";
 echo "<table class=\"table table-striped\">";
 echo "<form action=\"renew.php\" method=\"POST\">";
@@ -55,10 +56,11 @@ echo "</table>";
 echo "<form action=\"supercert.php\" method=\"POST\">";
 echo "<input type=\"submit\" value=\"Abbrechen\" class=\"btn btn-info\">";
 echo "</form>";
-echo "</div>";
+
 		}
 		else{
 			header("Location:supercert.php");
 		}
 }
+echo "</div>";
 ?>
