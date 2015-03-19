@@ -3,7 +3,7 @@
 	$type = $_POST["type"];
 	$user = $_POST["user"];
 	$laufzeit = $_POST["laufzeit"];
-	$csrlocation = substr($_POST["csrlocation"], 3);
+	//$csrlocation = substr($_POST["csrlocation"], 3);
 	$csr_pfad = $_POST['csr_pfad'];
 		
 	$timestamp = time ();
@@ -13,7 +13,7 @@
 	$dauer = $laufzeit;
 	$pfad = "/var/www/html/users/{$user}/";
 	$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
-	$pfadcsr = "/var/www/html/".$csrlocation;
+	$pfadcsr = "/var/www/html/".$csr_pfad;
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_timestamp = "{$datum}{$uhrzeit}";
@@ -28,7 +28,7 @@
 	echo "<br>";
 	*/
 	
-	
+
 	
 
 	//"-name serverca" für normale zertifikate und "-name userca" für subca
@@ -37,7 +37,7 @@
 	}
 	
 	if ($type == "intermediate"){
-		shell_exec('openssl ca -batch -name usr_cert -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
+		shell_exec('openssl ca -batch -name userca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
 	}
 	
 	if ($type == "wildcard"){
