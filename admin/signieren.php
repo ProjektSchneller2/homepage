@@ -22,10 +22,14 @@
 	include '../dbconnect.php';
 
 
-/*	
+	
+	
+	
+	
+
 	//"-name serverca" für normale zertifikate und "-name userca" für subca
  	
-	if ($type == "singlecert");
+	if ($type == "singlecert")
 	{
 		//Einfaches Zertifikat
 		//Zertifikatsname: /var/www/html/users/user+einfaches+datum(yyyymmdd)+uhrzeit(hhmm).crt
@@ -49,7 +53,7 @@
 		
 	}
 	
-	if ($type == "intermediate");
+	if ($type == "intermediate")
 	{
 		//Intermediate Zertifikat
 		//Zertifikatsname: /var/www/html/users/user+intermediate+datum(yyyymmdd)+uhrzeit(hhmm).pem
@@ -72,7 +76,7 @@
 	}
 	
 	
-	if ($type == "wildcard");
+	if ($type == "wildcard")
 	{
 		//Wildcard Zertifikat
 		//Zertifikatsname: /var/www/html/users/user+wildacrd+datum(yyyymmdd)+uhrzeit(hhmm).crt
@@ -96,7 +100,7 @@
 
 	
 	
-	if ($type == "san");  
+	if ($type == "san") 
 	{
 	
 	
@@ -124,7 +128,7 @@
 		
 	}
 	
-*/
+
 	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
 	$eintragen = mysqli_query($db, $eintrag);
