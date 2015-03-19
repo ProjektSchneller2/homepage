@@ -33,23 +33,9 @@ if (! isset($_SESSION)){
 			echo "<p>Dateitype ist NICHT zugelassen</p>";
 		} else {
 			
-			
-			
-					
-			move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr" );
 			$filepath = 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr";
-			$username = $_SESSION ['username'];
 			$db_timestamp = $datum.$uhrzeit;
-			
-			// Mail Notification für Admin
-			$empfaenger = "projektca@gmx.de";
-			$absendername = "CSR Anfrage Formular";
-			$absendermail = "projektca@gmx.de";
-			$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
-			// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
-			$text = "Eine neue CSR wurde hochgeladen.";
-			mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
-			
+			$username = $_SESSION ['username'];
 			
 			//Übertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
@@ -57,15 +43,39 @@ if (! isset($_SESSION)){
 			$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
 			$eintrag = "INSERT INTO cert (user, csr_pfad, laufzeit, status, csr_timestamp) VALUES ('$username', '$filepath', '$laufzeit' , 0, '$db_timestamp')";
 			$eintragen = mysqli_query($db, $eintrag);
-			echo "<p>&nbsp;</p>";
-			echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>3.</b></td><td style=\"padding-left:10px;\"><b>Pr&uuml;fung der CSR</b></td></tr></table><p>&nbsp;</p>";
-			echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
-			echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
-			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 			
+			if($eintragen){
+					
+				move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr" );
+								
+				// Mail Notification für Admin
+				$empfaenger = "projektca@gmx.de";
+				$absendername = "CSR Anfrage Formular";
+				$absendermail = "projektca@gmx.de";
+				$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
+				// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
+				$text = "Eine neue CSR wurde hochgeladen.";
+				mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
+				
+				
+				
+				
+				
+				echo "<p>&nbsp;</p>";
+				echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>3.</b></td><td style=\"padding-left:10px;\"><b>Pr&uuml;fung der CSR</b></td></tr></table><p>&nbsp;</p>";
+				echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
+				echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
+				echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+				
 			
 		
-			
+			}else{
+				echo "<p>&nbsp;</p>";
+				echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>3.</b></td><td style=\"padding-left:10px;\"><b>Pr&uuml;fung der CSR</b></td></tr></table><p>&nbsp;</p>";
+				echo "<p>Der Upload Ihrer CSR Datei war nicht erfolgreich!</p>";
+				echo "<p>Sie dürfen aus Sicherheitsgründen nur eine CSR-Anfrage pro Minute stellen.</p>";
+				echo "<p>Zurück zu Ihrem Kundenprofil <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+			}
 			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
 			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
 			// echo '</a>';
