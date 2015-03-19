@@ -51,11 +51,15 @@ if ($ergebnis){
 					echo "</form>";
 				}
 				echo "<td>".$docday." / ".$docmonth." / ".$docyear." | ".$dochour.":".$docmin."</td>";
-				if ($zeile['status'] !== 0){
+				if ($zeile['status'] == 1){
 					echo "<form action=\"certrenew.php\" method=\"POST\">";
 				
 				echo "<td><input type=\"submit\" name=\"certrenew\" value=\"Verlängern\" class=\"btn btn-info\"></td>";
 				echo "</form>";
+				
+				}
+				else{
+					echo"<td></td>";
 				}
 				echo "</tr>";
 			}
