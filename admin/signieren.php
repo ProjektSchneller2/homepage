@@ -46,7 +46,7 @@
 	
 	
 	if ($type == "san"){
-		shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
+		shell_exec('openssl ca -batch -name serverca -infiles ' .$pfadcsr ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -out ' .$pfadcert);
 	}
 	
 	/*
