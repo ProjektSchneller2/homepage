@@ -159,9 +159,24 @@
 	}
 	
 */
-	
+	// Update Zertifikats-Information
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
 	$eintragen = mysqli_query($db, $eintrag);
+	
+	//Get email adress
+	$abfrage = "SELECT email FROM login WHERE username LIKE '$user' LIMIT 1";
+	$ergebnis = mysqli_query($db, $abfrage);
+	$row = mysqli_fetch_object ($ergebnis);
+	$empfaenger = $row->email;
+	
+	//Mail content
+	$text = "Sehr geehrte Damen und Herren,\n \nIhre CSR wurde akzeptiert! \n\nSie können Ihr fertiges Zertifikat nun ihn Ihrem Kundenprofil herunterladen. \n\nMit freundlichen Grüsse Ihre Supercert GmbH";
+	
+	//Mail versand
+	$absendername = "Supercert GmbH";
+	$absendermail = "projektca@gmx.de";
+	$betreff = "Annahme Ihrer Zertifikats-Request";
+	mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 	
 	echo "Das $type Zertifikat von User $user mit der Dauer $dauer Tage wurde signiert.";
 ?>
