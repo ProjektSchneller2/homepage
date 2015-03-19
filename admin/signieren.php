@@ -50,6 +50,15 @@
 		unlink("{$pfadcnf}"); 
 	}
 	
+	shell_exec('rm /etc/ssl/serverca/index.txt');
+	shell_exec('touch /etc/ssl/serverca/index.txt');
+	shell_exec('rm /etc/ssl/serverca/serial');
+	shell_exec('cp /etc/ssl/serial /etc/ssl/serverca/serial');
+	
+	shell_exec('rm /etc/ssl/userca/index.txt');
+	shell_exec('touch /etc/ssl/userca/index.txt');
+	shell_exec('rm /etc/ssl/userca/serial');
+	shell_exec('cp /etc/ssl/serial /etc/ssl/userca/serial');
 	/*
 	
 	if ($type == "singlecert"){
