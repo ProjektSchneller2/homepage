@@ -15,7 +15,7 @@ if ($ergebnis){
 	if (mysqli_num_rows($ergebnis)>0){
 
 	echo "<table class=\"table table-striped\">";
-	echo "<tr><td><b>CSR-Typ</b></td><td><b>User</b></td><td><b>Laufzeit</b></td><td><b>Timestamp</b></td><td><b>CSR-Pfad</b></td><td><b>CSR prüfen</b></td></tr>";
+	echo "<tr><td><b>CSR-Typ</b></td><td><b>User</b></td><td><b>Laufzeit</b></td><td><b>Timestamp</b></td><td><b>CSR-Pfad</b></td><td><b>CSR prÃ¼fen</b></td></tr>";
 	while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 		{
 				echo "<tr>";
@@ -25,12 +25,12 @@ if ($ergebnis){
 				$type = explode ("2", $filename);					
 				
 				echo '<form action="csrcontrol.php" method="POST">';
-				echo "<td>". $type[0] . " <input type=\"hidden\" value=". $type[0] ." name=\"type\"> </td>";
-				echo "<td>". $zeile['user'] . " <input type=\"hidden\" value=". $zeile['user'] ." name=\"user\"> </td>";
-				echo "<td>". $zeile['laufzeit']. " <input type=\"hidden\" value=". $zeile['laufzeit'] ." name=\"laufzeit\"> </td>";				
+				echo "<td>". $type[0] . " <input type=\"hidden\" value=\"{$type[0]}\" name=\"type\"> </td>";
+				echo "<td>". $zeile['user'] . " <input type=\"hidden\" value=\"{$zeile['user']}\" name=\"user\"> </td>";
+				echo "<td>". $zeile['laufzeit']. " <input type=\"hidden\" value=\"{$zeile['laufzeit']}\" name=\"laufzeit\"> </td>";				
 				echo "<td>". $zeile['csr_timestamp'] . "</td>";				
-				echo "<td>". $zeile['csr_pfad'] . " <input type=\"hidden\" value=". $zeile['csr_pfad'] ." name=\"csr_pfad\"> </td>";
-				echo "<td> <input type=\"submit\" value=\"CSR prüfen\"></td>";
+				echo "<td>". $zeile['csr_pfad'] . " <input type=\"hidden\" value=\"{$zeile['csr_pfad']}\" name=\"csr_pfad\"> </td>";
+				echo "<td> <input type=\"submit\" value=\"CSR prÃ¼fen\"></td>";
 				echo "</form>";
 				echo "</tr>";
 			}
@@ -54,12 +54,12 @@ $submitrequest = 5;
 if ($submitrequest !== Null){
 	
 		
-// Darstellung der Bestätigung muss noch implementiert werden
+// Darstellung der BestÃ¤tigung muss noch implementiert werden
 		
 		
 		echo "<table style=\"border-radius: 15px; border-width:10px; border-color:#66CC66; border-style:ridge; padding:5px; width: 900px;\">";
 		while ($submitrequest >= 1){
-			//in den jeweiligen tds müssen dann die jeweiligen pendants der datenbank eingefügt werden
+			//in den jeweiligen tds mÃ¼ssen dann die jeweiligen pendants der datenbank eingefÃ¼gt werden
 			echo "<tr>";
 				echo "<td>";
 				echo "CSR Anfrage";
@@ -68,7 +68,7 @@ if ($submitrequest !== Null){
 					echo "Zertifikatsart";
 					echo "</td>";
 							echo "<td>";
-							echo "<a href=\"csrcontrol.php\">CSR prüfen</a>";
+							echo "<a href=\"csrcontrol.php\">CSR prÃ¼fen</a>";
 							echo "</td>";
 									
 									
