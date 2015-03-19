@@ -24,7 +24,7 @@ $text = "Sehr geehrte Damen und Herren,\n \nIhr Account wurde freigeschaltet! \n
 //Mail versand
 $absendername = "Supercert GmbH";
 $absendermail = "projektca@gmx.de";
-$betreff = "Annahme Ihrer Zertifikats-Request";
+$betreff = "Freischaltung Ihres Accounts";
 mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 
 header('Location: admin.php');
