@@ -11,7 +11,6 @@
 	$uhrzeit = date ( "Hi", $timestamp );
 	
 	$dauer = $laufzeit;
-	$cert = "wildcard1_cert.pem";
 	$pfad = "/var/www/html/users/{$user}/";
 	$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
 	$pfadcsr = "/var/www/html/".$csrlocation;
@@ -22,7 +21,8 @@
 	//inkludieren der db-verbindung:
 	include '../dbconnect.php';
 
-	
+
+/*	
 	//"-name serverca" für normale zertifikate und "-name userca" für subca
  	
 	if ($type == "singlecert");
@@ -124,34 +124,12 @@
 		
 	}
 	
+*/
+	
 	$eintrag = "UPDATE cert SET crt_pfad='$crt_pfad', crt_timestamp='$crt_timestamp', status=1 WHERE csr_pfad='$csr_pfad'";
 	$eintragen = mysqli_query($db, $eintrag);
 	
 	echo "Das $type Zertifikat von User $user mit der Dauer $dauer Tage wurde signiert.";
-	
-	//email versand
-	
-	$username =$_SESSION["user"];
-	
-	$abfrage = "SELECT email FROM login WHERE username LIKE '$username' LIMIT 1";
-	$ergebnis = mysqli_query($db, $abfrage);
-	$row = mysqli_fetch_object ($ergebnis);
-	$email = $row->email;
-	
-	
-	
-	
-	//Mail versand
-	$empfaenger =$email;
-	$absendername = "Supercert GmbH";
-	$absendermail = "projektca@gmx.de";
-	$betreff = "Ihr Zertifikat wurde erstellt";
-	$text = "Ihr Zertifikat wurde soeben signiert und ist nun in Ihrem Kundenprofil verf�gbar";
-	
-	// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
-	
-	mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
-	
 ?>
 
 <form action="admin.php" method="post"> <input type="submit" value="Back"> </form>
