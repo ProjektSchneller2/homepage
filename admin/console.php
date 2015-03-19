@@ -15,7 +15,7 @@ if ($ergebnis){
 	if (mysqli_num_rows($ergebnis)>0){
 
 	echo "<table class=\"table table-striped\">";
-	echo "<tr><td><b>CSR-Typ</b></td><td><b>User</b></td><td><b>Laufzeit</b></td><td><b>Timestamp</b></td><td><b>CSR-Pfad</b></td><td><b>CSR prÃ¼fen</b></td></tr>";
+	echo "<tr><td><b>CSR-Typ</b></td><td><b>User</b></td><td><b>Laufzeit</b></td><td><b>Timestamp</b></td><td><b>CSR-Pfad</b></td><td><b>CSR prüfen</b></td></tr>";
 	while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 		{
 				echo "<tr>";
@@ -30,7 +30,7 @@ if ($ergebnis){
 				echo "<td>". $zeile['laufzeit']. " <input type=\"hidden\" value=\"{$zeile['laufzeit']}\" name=\"laufzeit\"> </td>";				
 				echo "<td>". $zeile['csr_timestamp'] . "</td>";				
 				echo "<td>". $zeile['csr_pfad'] . " <input type=\"hidden\" value=\"{$zeile['csr_pfad']}\" name=\"csr_pfad\"> </td>";
-				echo "<td> <input type=\"submit\" value=\"CSR prÃ¼fen\"></td>";
+				echo "<td> <input type=\"submit\" value=\"CSR prüfen\"></td>";
 				echo "</form>";
 				echo "</tr>";
 			}

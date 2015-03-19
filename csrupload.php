@@ -44,12 +44,12 @@ if ($_FILES != Null) {
 			$absendername = "CSR Anfrage Formular";
 			$absendermail = "projektca@gmx.de";
 			$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
-			// Auf Nennung des Users wird aus SicherheitsgrÃ¼nden verzichtet, da die Information direkt im Adminpanel bereitsteht
+			// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
 			$text = "Eine neue CSR wurde hochgeladen.";
 			mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 			
 			
-			//Ãœbertragen der Zertifikatsdaten in die DB
+			//Übertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
 			$laufzeit = $_SESSION['dauer'];
 			$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
@@ -58,8 +58,8 @@ if ($_FILES != Null) {
 			
 			
 			echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
-			echo "<p>Als nÃ¤chstes werden wir Ihre Anfrage prÃ¼fen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
-			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand kÃ¶nnen Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+			echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
+			echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 			
 			
 		
@@ -70,7 +70,7 @@ if ($_FILES != Null) {
 		}
 		if($_SESSION ['certtype'] == "san")
 		{
-						//CNF-DateigerÃ¼st kopieren
+						//CNF-Dateigerüst kopieren
 			$from = "/var/www/html/sanconfig/grund.cnf";
 			$to = "/var/www/html/users/{$username}/grund.cnf";
 			copy($from, $to);
@@ -85,7 +85,7 @@ DNS.2 = {$_POST["dns2"]}
 DNS.3 = {$_POST["dns3"]}"
 ;
 			
-			//CNF-Datei mit den Usereingaben fÃ¼llen
+			//CNF-Datei mit den Usereingaben füllen
 			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.cnf");
 			file_put_contents("/var/www/html/users/{$username}/{$username}.cnf", $inhalt .= "{$saninput}");
 			

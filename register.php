@@ -8,7 +8,7 @@ $passwort2 = mysqli_real_escape_string ($db, $_POST["passwort2"]);
 
 if($passwort != $passwort2 OR $username == "" OR $passwort == "" OR $email == "")
 {
-	echo "<p class=\"bg-danger\">Eingabefehler. Bitte alle Felder korekt ausfÃ¼llen. <a href=\"registrierung.html\">ZurÃ¼ck</a></p>";
+	echo "<p class=\"bg-danger\">Eingabefehler. Bitte alle Felder korekt ausfüllen. <a href=\"registrierung.html\">Zurück</a></p>";
 	exit;
 }
 $passwort = md5($passwort);
@@ -27,7 +27,7 @@ if($menge == 0)
 	}
 	else
 	{
-		echo "<p class=\"bg-danger\">Fehler beim Speichern des Benutzernames. <a href=\"registrierung.html\">ZurÃ¼ck</a></p>";
+		echo "<p class=\"bg-danger\">Fehler beim Speichern des Benutzernames. <a href=\"registrierung.html\">Zurück</a></p>";
 	}
 
 
@@ -35,6 +35,6 @@ if($menge == 0)
 
 else
 {
-echo "<p class=\"bg-danger\">Benutzername schon vorhanden. <a href=\"registrierung.html\">ZurÃ¼ck</a></p>";
+echo "<p class=\"bg-danger\">Benutzername schon vorhanden. <a href=\"registrierung.html\">Zurück</a></p>";
     }
 		?>
