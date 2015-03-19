@@ -10,6 +10,9 @@ if(!isset($_SESSION["admin"]))
 	exit;
 }
 
+$cancelmailcontent="Sehr geehrte Damen und Herren,\n \nLeider müssen wir Ihre CSR ablehnen, der Grund lautet wie folgt:\n\n";
+$sign="\n\nMit freundlichen Grüsse Ihre Supercert GmbH";
+
 //datenbankabfrage - kunde fehlt noch
 if($_POST['cancelmail']!==Null){
 	if($_POST['cancel']!==""){
@@ -65,7 +68,7 @@ if($_POST['cancelmail']!==Null){
 	echo "<h3>Bitte geben Sie einen Grund ein, warum die vorliegende CSR-Datei fehlerhaft ist:</h3>	";
 	
  
-$cancelmailcontent="<p>Sehr geehrte Damen und Herren,</p>Leider müssen wir Ihre CSR ablehnen, der Grund lautet wie folgt:<p>&nbsp;</p>";
+
 
 echo "<p>Die Antwort beginnt mit:</p>".$cancelmailcontent;
 
@@ -77,7 +80,7 @@ echo "<form action=\"canceled.php\" method=\"POST\">";
 		echo "<input type=\"submit\" name=\"cancelmail\" value=\"Benachrichtigung versenden!\">";
 echo "</form>";
 
-$sign="Mit freundlichen Grüsse Ihre Supercert GmbH";
+
 echo $sign;
 
 echo "</div>";
