@@ -1,13 +1,21 @@
 <?php
 require_once 'header.php';
 echo "<div class=\"container\">";
-echo "<h2>Herzlich willkommen bei Supercert ".$_SESSION["username"]."!</h2>";
+if (isset($_SESSION['username'])){
+$username=$_SESSION['username'];
 
+}
+else{
+	$username="";
+}
+
+echo "<h2>Herzlich willkommen bei Supercert".$username."!</h2>";
 if(!isset($_SESSION["username"]))
 {
 	echo "Bitte erst <a href=\"anmeldung.html\">einloggen</a>";
 	exit;
 }
+
 
 //Testseite für index-Startseite
 //loginvariable, muss z. B. mit Session verbunden und mit einem weiteren if case abgefragt bzw. geändert werden - eingeloggt, ausgeloggt

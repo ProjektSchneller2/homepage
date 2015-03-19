@@ -21,7 +21,7 @@ if ($ergebnis){
 
 	echo "<table class=\"table table-striped\">";
 	
-	if ($zeile['status'] !== 0){
+	if ( $zeile['status']==0){
 	$renew="<td><b>Verlängern</b></td>";}
 	else{
 		$renew="";
@@ -54,7 +54,7 @@ if ($ergebnis){
 				if ($zeile['status'] !== 0){
 					echo "<form action=\"certrenew.php\" method=\"POST\">";
 				
-				echo "<td><input type=\"submit\" name=\"certrenew\" value=\"certrenew\" class=\"btn btn-info\"></td>";
+				echo "<td><input type=\"submit\" name=\"certrenew\" value=\"Verlängern\" class=\"btn btn-info\"></td>";
 				echo "</form>";
 				}
 				echo "</tr>";
