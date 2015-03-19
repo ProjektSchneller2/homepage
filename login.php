@@ -4,7 +4,7 @@ require_once 'header.php';
 echo "<div class=\"container\">"; //@TODO: needed?
 
 $username = $_POST["username"]; 
-$passwort = md5($_POST["password"]); //@TODO: PHP 5.5 and above: change to $passwort = password_hash($passwort, PASSWORD_DEFAULT);
+$passwort = hash('sha512', $username.$_POST["password"]); //@TODO: PHP 5.5 and above: change to $passwort = password_hash($passwort, PASSWORD_DEFAULT);
 									 //@TODO: set database column to length 255, delete all users, register new
 
 //get database record for user

@@ -11,7 +11,7 @@ if($passwort != $passwort2 OR $username == "" OR $passwort == "" OR $email == ""
 	echo "<p class=\"bg-danger\">Eingabefehler. Bitte alle Felder korekt ausfüllen. <a href=\"registrierung.html\">Zurück</a></p>";
 	exit;
 }
-$passwort = md5($passwort);
+$passwort = hash('sha512', $username.$passwort);
 
 $result = mysqli_query($db, "SELECT id FROM login WHERE username LIKE '$username'");
 $menge = mysqli_num_rows($result);
