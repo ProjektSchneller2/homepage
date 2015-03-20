@@ -91,7 +91,7 @@ if (! isset($_SESSION)){
 			copy($from, $to);
 			
 			//Datei umbennen in cnf
-			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf");
+			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/{$filepath}.cnf");
 			$cnfdatei = "/var/www/html/{$filepath}.cnf";
 			
 			
@@ -123,8 +123,8 @@ DNS.2 = {$_POST["dns2"]}
 DNS.3 = {$_POST["dns3"]}
 DNS.4 = {$cn[0]}
 IP.1 = {$_POST["ip"]}
-IP.2 = {$_POST["ip"]}
-IP.3 = {$_POST["ip"]}"; 
+IP.2 = {$_POST["ip2"]}
+IP.3 = {$_POST["ip3"]}"; 
 			
 			//CNF-Datei mit den Usereingaben füllen
 			$inhalt = file_get_contents($cnfdatei);
