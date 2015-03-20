@@ -7,6 +7,7 @@ $ergebnis = mysqli_query($db, $abfrage);
 
 if ($ergebnis){
 	if (mysqli_num_rows($ergebnis)>0){
+		echo "<p>&Uuml;bersicht der beantragten User-Freischaltungen:</p>";
 		echo "<table class=\"table table-striped\">";;
 		while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 			{

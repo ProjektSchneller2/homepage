@@ -14,10 +14,10 @@ $ergebnis = mysqli_query($db, $abfrage);
 
 if ($ergebnis){
 	if (mysqli_num_rows($ergebnis)>0) {
-
+echo "<p>&Uuml;bersicht der ausgestellten Zertifikate:</p>";
 	echo "<table class=\"table table-striped\">";
 	echo "<tr>
-			<td><b>CSR-Typ</b></td>
+			<td><b>CERT-Typ</b></td>
 			<td><b>User</b></td>
 			<td><b>Laufzeit</b></td>
 			<td><b>CSR-Timestamp</b></td>

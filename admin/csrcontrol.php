@@ -23,11 +23,11 @@ if(!isset($_SESSION["admin"]))
   
  
 
-echo "Daten der CSR von Nutzer \"".$user."\":";
+echo "Daten der CSR von Nutzer \"".$user."\"- ".$type." Anfrage:";
 
 
 $csr = shell_exec('openssl req -noout -text -in '.$csrlocation);
-
+var_dump($csr);
 //echo $csr;
 
 //echo $csrlocation;
@@ -119,4 +119,13 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 	</form>
 </p>
 </p>
+<?php 
+echo "<h2 class=\"alert alert-danger\">Wichtiger Hinweis!</h2>";
+echo "<p>Eine CSR muss genau geprüft werden und darf u. a. nicht angenommen werden wenn:<p>
+		<ul>
+		<li>Die Laufzeit negativ ist</li>
+		<li>Die Laufzeit höher als 1825 Tage (entspricht 5 Jahre, ist)</li>
+		<li>Die CSR Daten unvollständig angezeigt werden</li>
+		</ul>";
+?>
 </div>

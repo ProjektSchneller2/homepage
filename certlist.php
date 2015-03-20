@@ -23,14 +23,7 @@ if ($ergebnis){
 
 	echo "<table class=\"table table-striped\">";
 	
-	if (isset($zeile['status'])){
-		if($zeile['status']==1){
-	$renew="<td><b>Verlängern</b></td>";}
-	else{
-		$renew="<td></td>";
-	}
-	}
-	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Uploaddatum</b></td><td><strong>G&uuml;ltig bis</strong></td>".$renew."</tr>";
+	echo "<tr><td><b>CSR-Typ</b></td><td><b>Status</b></td><td><b>Uploaddatum</b></td><td><strong>G&uuml;ltig bis</strong></td><td><b>Verlängern</b></td></tr>";
 	while ($zeile = mysqli_fetch_array($ergebnis, MYSQL_ASSOC))
 		{
 			
