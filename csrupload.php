@@ -95,11 +95,34 @@ if (! isset($_SESSION)){
 			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf");
 			$cnfdatei = "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf";
 			
+			
+			//Common Name als DNS hinzufügen
+			//CSR auslesen und in die Variable schreiben
+			$csr = shell_exec('openssl req -noout -text -in ' .$pfadcsr);			
+			//Variablen deklarieren
+			$pos = strpos($csr,"CN=");
+			$posmail = strpos($csr,"emailAddress");
+			//Position um 3 vergrößern da "CN=" weggerechnet werden muss
+			$pos = $pos + 3;
+			$substring = substr($csr, $pos);	
+			
+			//Abfrage ob in der CSR eine Mailadresse angegeben wurde
+			if ($posmail != 0){
+				//Common Name in die variable schreiben
+				$cn = explode("/", $substring);
+				//echo "<br>{$cn[0]}<br>";
+			}
+			else{
+				//Common Name in die variable schreiben
+				$cn = explode(" ", $substring);
+				//echo "<br>{$cn[0]}<br>";
+			
 			//SAN eingaben in variable packen
 			$saninput = "\n[ alt_names ]
 DNS.1 = {$_POST["dns"]}
 DNS.2 = {$_POST["dns2"]}
 DNS.3 = {$_POST["dns3"]}
+DNS.4 = {$cn[0]}
 IP.1 = {$_POST["ip"]}
 IP.2 = {$_POST["ip"]}
 IP.3 = {$_POST["ip"]}"; 
