@@ -91,8 +91,8 @@ if (! isset($_SESSION)){
 			copy($from, $to);
 			
 			//Datei umbennen in cnf
-			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf");
-			$cnfdatei = "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf";
+			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/{$filepath}.cnf");
+			$cnfdatei = "/var/www/html/{$filepath}.cnf";
 			
 			
 			//Common Name als DNS hinzufügen
@@ -116,15 +116,15 @@ if (! isset($_SESSION)){
 				$cn = explode(" ", $substring);
 				//echo "<br>{$cn[0]}<br>";
 			}
+			
+		
+			
+			
 			//SAN eingaben in variable packen
-			$saninput = "\n[ alt_names ]
-DNS.1 = {$_POST["dns"]}
-DNS.2 = {$_POST["dns2"]}
-DNS.3 = {$_POST["dns3"]}
-DNS.4 = {$cn[0]}
-IP.1 = {$_POST["ip"]}
-IP.2 = {$_POST["ip"]}
-IP.3 = {$_POST["ip"]}"; 
+			$saninput = "\n
+			[ alt_names ]
+DNS.1 = {$_POST["dns1"]}
+DNS.2 = {$cn[0]}"; 
 			
 			//CNF-Datei mit den Usereingaben füllen
 			$inhalt = file_get_contents($cnfdatei);
@@ -164,12 +164,8 @@ else {
 	//Zusatzeingaben bei dem SAN-Zertifikat
 	if ($_SESSION ['certtype'] == "san")	
 	{
-		echo "<p>IP: <input type=\"text\" name=\"ip\" /></p>";
-		echo "<p>IP: <input type=\"text\" name=\"ip2\" /></p>";
-		echo "<p>IP: <input type=\"text\" name=\"ip3\" /></p>";
-		echo "<p>DNS: <input type=\"text\" name=\"dns\" /></p>";		
-		echo "<p>DNS2: <input type=\"text\" name=\"dns2\" /></p>";
-		echo "<p>DNS3: <input type=\"text\" name=\"dns3\" /></p>";
+		echo "<p>DNS: <input type=\"text\" name=\"dns1\" /></p>";		
+		
 	
 	}
 	

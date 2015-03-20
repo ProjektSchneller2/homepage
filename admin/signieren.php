@@ -11,7 +11,7 @@
 	
 	$dauer = $laufzeit;
 	$pfad = "/var/www/html/users/{$user}/";
-	$pfadcnf = "/var/www/html/users/{$user}/{$type}{$datum}{$uhrzeit}.cnf";
+	$pfadcnf = "/var/www/html/{$csr_pfad}.cnf";
 	$pfadcsr = "/var/www/html/".$csr_pfad;
 	$pfadcert = "/var/www/html/users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
