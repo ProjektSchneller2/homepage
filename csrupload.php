@@ -97,7 +97,7 @@ if (! isset($_SESSION)){
 			
 			//Common Name als DNS hinzufügen
 			//CSR auslesen und in die Variable schreiben
-			$csr = shell_exec('openssl req -noout -text -in ' .$pfadcsr);			
+			$csr = shell_exec('openssl req -noout -text -in /var/www/html/' .$filepath);			
 			//Variablen deklarieren
 			$pos = strpos($csr,"CN=");
 			$posmail = strpos($csr,"emailAddress");
