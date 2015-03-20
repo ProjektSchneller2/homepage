@@ -3,7 +3,6 @@
 	$type = $_POST["type"];
 	$user = $_POST["user"];
 	$laufzeit = $_POST["laufzeit"];
-	//$csrlocation = substr($_POST["csrlocation"], 3);
 	$csr_pfad = $_POST['csr_pfad'];
 		
 	$timestamp = time ();
@@ -18,19 +17,18 @@
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_timestamp = "{$datum}{$uhrzeit}";
 	
-	//inkludieren der db-verbindung:
-	include '../dbconnect.php';
-
 	/*
-	var_dump($_POST);
 	echo "<br>";
-	echo "$pfad $pfadcnf $pfadcsr $crt_pfad $crt_timestamp";
+	var_dump($_POST);
 	echo "<br>";
 	*/
 	
+	//inkludieren der db-verbindung:
+	include '../dbconnect.php';
 
-	$textinputserverca = "
------BEGIN CERTIFICATE-----
+
+
+	$textinputserverca = "-----BEGIN CERTIFICATE-----
 MIIGUDCCBDigAwIBAgIJALRx2NhCCNQEMA0GCSqGSIb3DQEBCwUAMFgxCzAJBgNV
 BAYTAkRFMRswGQYDVQQIDBJCYWRlbi1Xw7xydHRlbWJlcmcxDTALBgNVBAoMBERI
 QlcxCzAJBgNVBAsMAldJMRAwDgYDVQQDDAdSb290IENBMB4XDTE1MDMxMDIzMTIz
@@ -177,14 +175,111 @@ Xf9UkpsBLlf1KOQh2PzCb8eAxklbTTvjUvjfoE3FMAQWnUWpiZRjcINOSifpH2G0
 AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 -----END CERTIFICATE-----";
 
-/*
+
+
 	//"-name serverca" für normale zertifikate und "-name userca" für subca
- 	if ($type == "singlecert"){
-		shell_exec('openssl ca -batch -name serverca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
+ 	if ($type == "singlecert"){		
+		
+		//Userbility Feature für einfaches Zertifikat 
+		
+		//CSR auslesen und in die Variable schreiben
+		$csr = shell_exec('openssl req -noout -text -in ' .$pfadcsr);	
+		
+		//Variablen deklarieren
+		$poswww = strpos($csr,"CN=www.");
+		$pos = strpos($csr,"CN=");
+		$posmail = strpos($csr,"emailAddress");
+		
+		//Herausfinden ob in der CSR CN=www.example.com oder CN=example.com steht
+		//Abfrage welcher Fall eintrifft, falls der erste Fall eintritt ansonsten 2. Fall
+		if ($poswww != 0)
+		{	
+			//Position um 3 vergrößern da "CN=" weggerechnet werden muss
+			$poswww = $poswww + 7;
+			$substring = substr($csr, $poswww);
+			
+			//Abfrage ob in der CSR eine Mailadresse angegeben wurde
+			if ($posmail != 0){
+				//Common Name in die variable schreiben
+				$cn = explode("/", $substring);
+				//echo "<br>{$cn[0]}<br>";
+			}
+			else{
+				//Common Name in die variable schreiben
+				$cn = explode(" ", $substring);
+				//echo "<br>{$cn[0]}<br>";
+			}
+			
+			//Config anlegen
+			//CNF-Dateigerüst kopieren
+			$from = "/var/www/html/sanconfig/grund.cnf";
+			$to = "/var/www/html/users/{$user}/grund.cnf";
+			copy($from, $to);
+			
+			//Datei umbennen in cnf
+			rename("/var/www/html/users/{$user}/grund.cnf", "/var/www/html/users/{$user}/{$user}.cnf");
+			
+			//SAN ergänzen
+			$saninput = "\n[ alt_names ]
+DNS.1 = {$cn[0]}"; 
+			
+			//CNF-Datei mit den Ergänzungen füllen
+			$inhalt = file_get_contents("/var/www/html/users/{$user}/{$user}.cnf");
+			file_put_contents("/var/www/html/users/{$user}/{$user}.cnf", $inhalt .= "{$saninput}");
+			
+			$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
+			
+			//Zertifikat mit der Config singieren
+			shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
+			
+		}
+		else
+		{
+			//Position um 3 vergrößern da "CN=" weggerechnet werden muss
+			$pos = $pos + 3;
+			$substring = substr($csr, $pos);
+			
+			//Abfrage ob in der CSR eine Mailadresse angegeben wurde
+			if ($posmail != 0){
+				//Common Name in die variable schreiben
+				$cn = explode("/", $substring);
+				//echo "<br>{$cn[0]}<br>";
+			}
+			else{
+				//Common Name in die variable schreiben
+				$cn = explode(" ", $substring);
+				//echo "<br>{$cn[0]}<br>";
+			}
+			
+			//Config anlegen
+			//CNF-Dateigerüst kopieren
+			$from = "/var/www/html/sanconfig/grund.cnf";
+			$to = "/var/www/html/users/{$user}/grund.cnf";
+			copy($from, $to);
+			
+			//Datei umbennen in cnf
+			rename("/var/www/html/users/{$user}/grund.cnf", "/var/www/html/users/{$user}/{$user}.cnf");
+			
+			//SAN ergänzen
+			$saninput = "\n[ alt_names ]
+DNS.1 = www.{$cn[0]}"; 
+			
+			//CNF-Datei mit den Ergänzungen füllen
+			$inhalt = file_get_contents("/var/www/html/users/{$user}/{$user}.cnf");
+			file_put_contents("/var/www/html/users/{$user}/{$user}.cnf", $inhalt .= "{$saninput}");
+			
+			$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
+			
+			//Zertifikat mit der Config singieren
+			shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
+		}
 		
 		//Zertifikatskette
 		$text = file_get_contents("{$pfadcert}");
 		file_put_contents("{$pfadcert}", $text .= "{$textinputserverca}");
+		
+		//Config löschen
+		//unlink("/var/www/html/users/{$user}/{$user}.cnf"); 		
 	}
 	
 	if ($type == "intermediate"){
@@ -205,19 +300,19 @@ AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 	
 	
 	if ($type == "san"){
+		//Zertifikat mit der Config singieren
 		shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
+		
+		//Config löschen
 		unlink("{$pfadcnf}"); 
 		
-		//Zertifikatskette
+		//Zertifikatskette hinzufügen
 		$text = file_get_contents("{$pfadcert}");
 		file_put_contents("{$pfadcert}", $text .= "{$textinputserverca}");
 	}
-*/	
 	
-	$csr = shell_exec('openssl req -noout -text -in /var/www/test.csr');
-	$pos = strpos("{$csr}","www");
 	
-	echo "<br><br>{$pos}<br><br>";
+
 	
 	shell_exec('rm /etc/ssl/serverca/index.txt');
 	shell_exec('touch /etc/ssl/serverca/index.txt');

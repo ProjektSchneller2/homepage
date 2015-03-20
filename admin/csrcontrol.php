@@ -73,7 +73,7 @@ echo "<tr><td>Commonname:</td><td> ".$commonname."</td></tr>";
 
 
 echo "</table>";
-//Sonderaufteilung wegen Commonname & Verschlüsselung
+//Sonderaufteilung wegen Commonname & VerschlÃ¼sselung
 $keyinformation=implode(" ",$commonnamepart);
 $modulusextract= explode("Modulus:", $keyinformation);
 $publickeypart=$modulusextract[1];
@@ -82,7 +82,7 @@ $publickey=str_replace(" Exponent","", $publickeyextend[0]);
 $bitpart =$modulusextract[0];
 $bitencrypt=explode("Public-Key:",$bitpart);
 
-echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-striped\"><tr><td>"."Verschlüsselt mit ".$bitencrypt[1].":"."</td><td>".$publickey."</td></tr></table></p>";
+echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-striped\"><tr><td>"."VerschlÃ¼sselt mit ".$bitencrypt[1].":"."</td><td>".$publickey."</td></tr></table></p>";
 
 
 /*var_dump($modulusextract);
@@ -109,6 +109,9 @@ echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-str
 	</form>
 </p>
 
+<p>
+<form action="admin.php" method="post"> <input type="submit" value="Back"> </form>
+</p>
 	
 <p>
 	<form action="canceled.php" method="post"> 

@@ -15,7 +15,7 @@ if (isset($_POST['certrenew'])){
 	$csr_pfad=$_POST['csr_pfad'];
 	
 	include 'dbconnect.php';
-	$eintrag="UPDATE cert SET crt_pfad='', crt_timestamp='', laufzeit='$laufzeit', status=0 WHERE csr_pfad='$csr_pfad'";
+	$eintrag="UPDATE cert SET crt_pfad=NULL, crt_timestamp=NULL, laufzeit='$laufzeit', status=0 WHERE csr_pfad='$csr_pfad'";
 	$renewstatus = mysqli_query($db, $eintrag);
 	
 	// Mail Notification für Admin
