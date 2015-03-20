@@ -221,7 +221,7 @@ AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 			
 			//SAN ergänzen
 			$saninput = "\n[ alt_names ]
-DNS.1 = {$cn}"; 
+DNS.1 = {$cn[0]}"; 
 			
 			//CNF-Datei mit den Ergänzungen füllen
 			$inhalt = file_get_contents("/var/www/html/users/{$user}/{$user}.cnf");
@@ -260,7 +260,7 @@ DNS.1 = {$cn}";
 			
 			//SAN ergänzen
 			$saninput = "\n[ alt_names ]
-DNS.1 = www.{$cn}"; 
+DNS.1 = www.{$cn[0]}"; 
 			
 			//CNF-Datei mit den Ergänzungen füllen
 			$inhalt = file_get_contents("/var/www/html/users/{$user}/{$user}.cnf");
