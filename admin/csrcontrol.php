@@ -70,7 +70,9 @@ $commonnamepart=explode(" ",$commonnameextended);
 $commonnameextend=$commonnamepart[0];
 $commonname=str_replace("CN=","",$commonnameextend);
 echo "<tr><td>Commonname:</td><td> ".$commonname."</td></tr>";
-
+if ($type == "san"){
+echo "<tr><td>Weitere Angaben:</td><td></td></tr>";
+}
 
 echo "</table>";
 //Sonderaufteilung wegen Commonname & Verschlüsselung
@@ -82,7 +84,7 @@ $publickey=str_replace(" Exponent","", $publickeyextend[0]);
 $bitpart =$modulusextract[0];
 $bitencrypt=explode("Public-Key:",$bitpart);
 
-echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-striped\"><tr><td>"."Verschlüsselt mit ".$bitencrypt[1].":"."</td><td>".$publickey."</td></tr></table></p>";
+echo "<p>&ouml;ffentlicher Schl&uuml;essel:</p><p><table class=\"table table-striped\"><tr><td>"."Verschl&uuml;sselt mit ".$bitencrypt[1].":"."</td><td>".$publickey."</td></tr></table></p>";
 
 
 /*var_dump($modulusextract);
