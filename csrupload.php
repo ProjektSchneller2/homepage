@@ -7,7 +7,6 @@ $datum = date ( "Ymd", $timestamp );
 $uhrzeit = date ( "Hi", $timestamp );
 
 
-
 if ($_FILES != Null) {
 if (! isset($_SESSION)){
 	session_start();
