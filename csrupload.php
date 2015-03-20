@@ -109,7 +109,7 @@ IP.3 = {$_POST["ip"]}";
 			
 			//SAN Angaben in eine Textdatei abspeichern um diese bei der Überprüfung des Admins anzuzeigen
 			//Datei erstellen
-			$sandatei = fopen("/var/www/html/users/santxt" . $_SESSION ['username'] . "/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".txt", a+);
+			$sandatei = fopen("/var/www/html/users/" . $_SESSION ['username'] . "/santxt" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".txt", a+);
 						
 			//SAN Angaben in die erstellte Datei schreiben
 			fwrite($sandatei, $saninput);
