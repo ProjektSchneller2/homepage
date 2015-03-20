@@ -85,4 +85,12 @@ foreach ($template as &$part) {
 
 echo implode($homepage)*/
 	echo "</div >";
+	include 'footer.php';
+	if (isset($_POST['impressum'])){
+		echo "Kurs WI 2012 - IT Sicherheit/Gruppe 04<br>";
+		echo "Marienstraﬂe 20<br>";
+		echo "89518 Heidenheim<br>";
+		echo "info(at)dhbw-heidenheim.de<br>";
+	}
+	else{echo"&nbsp;";}
 ?>

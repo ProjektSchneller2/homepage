@@ -27,7 +27,7 @@ echo "Daten der CSR von Nutzer \"".$user."\"- ".$type." Anfrage:";
 
 
 $csr = shell_exec('openssl req -noout -text -in '.$csrlocation);
-var_dump($csr);
+
 //echo $csr;
 
 //echo $csrlocation;
@@ -71,7 +71,12 @@ $commonnameextend=$commonnamepart[0];
 $commonname=str_replace("CN=","",$commonnameextend);
 echo "<tr><td>Commonname:</td><td> ".$commonname."</td></tr>";
 if ($type == "san"){
-echo "<tr><td>Weitere Angaben:</td><td></td></tr>";
+	
+		$datumuhrzeit=$_POST['csr_timestamp'];
+		$inhalt = file_get_contents("../users/".$user."/santxt".$type.$datumuhrzeit.".txt");
+		
+
+echo "<tr><td>Weitere Angaben:</td><td>".$inhalt."</td></tr>";
 }
 
 echo "</table>";
@@ -130,7 +135,7 @@ echo "<p>Eine CSR muss genau geprüft werden und darf u. a. nicht angenommen werd
 		<ul>
 		<li>Die Laufzeit negativ ist</li>
 		<li>Die Laufzeit höher als 1825 Tage (entspricht 5 Jahre, ist)</li>
-		<li>Die CSR Daten unvollständig angezeigt werden</li>
+		<li>Die CSR Daten unvollständig angezeigt werden(z. B. Land, Bundesland, Ort, Name des Unternehmens, Organisationseinheit, Commonname, + evtl. DNS, IP, Mail)</li>
 		</ul>";
 ?>
 </div>
