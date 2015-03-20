@@ -92,7 +92,8 @@ if (! isset($_SESSION)){
 			copy($from, $to);
 			
 			//Datei umbennen in cnf
-			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/{$username}.cnf");
+			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf");
+			$cnfdatei = "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf";
 			
 			//SAN eingaben in variable packen
 			$saninput = "\n[ alt_names ]
@@ -104,8 +105,8 @@ IP.2 = {$_POST["ip"]}
 IP.3 = {$_POST["ip"]}"; 
 			
 			//CNF-Datei mit den Usereingaben füllen
-			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.cnf");
-			file_put_contents("/var/www/html/users/{$username}/{$username}.cnf", $inhalt .= "{$saninput}");
+			$inhalt = file_get_contents($cnfdatei);
+			file_put_contents($cnfdatei, $inhalt .= "{$saninput}");
 			
 			//SAN Angaben in eine Textdatei abspeichern um diese bei der Überprüfung des Admins anzuzeigen
 			//Datei erstellen
