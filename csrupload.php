@@ -213,5 +213,3 @@ if ($_SESSION ['certtype'] == "intermediate")
 
 
 ?>
-
-
