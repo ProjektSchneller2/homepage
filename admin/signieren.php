@@ -414,7 +414,7 @@ DNS.2 = *.{$cn[0]}";
 		shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
 		
 		//Config löschen
-		unlink("{$pfadcnf}"); 
+		//unlink("{$pfadcnf}"); 
 		
 		//Zertifikatskette hinzufügen
 		$text = file_get_contents("{$pfadcert}");
@@ -547,7 +547,7 @@ DNS.2 = *.{$cn[0]}";
 	$empfaenger = $row->email;
 		
 	//Inhalt der E-Mail
-	$text = "Sehr geehrte Damen und Herren,\n \nIhre CSR wurde akzeptiert! \n\nSie k��n Ihr fertiges Zertifikat nun ihn Ihrem Kundenprofil herunterladen. \n\nMit freundlichen Gr�� Ihre Supercert GmbH";
+	$text = "Sehr geehrte Damen und Herren,\n \nIhre CSR wurde akzeptiert! \n\nSie k�nnen Ihr fertiges Zertifikat nun ihn Ihrem Kundenprofil herunterladen. \n\nMit freundlichen Gr�sse Ihre Supercert GmbH";
 	
 	//E-Mailversand
 	$absendername = "Supercert GmbH";
