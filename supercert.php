@@ -51,6 +51,9 @@ else {
 	include ("certlist.php");
 	//Auswahl der kaufbaren Zertifikate
 	include ("selectcert.html");
+	
+	include 'price.php';
+	include 'kontodaten.php';
 	include 'logout.html';
 /*
 	}
