@@ -186,16 +186,16 @@ AqAaiNF2CJwc5xoDRo5L0egZQrUkGEczW3Q+ykkH
 		$csr = shell_exec('openssl req -noout -text -in ' .$pfadcsr);	
 		
 		//Variablen deklarieren
-		$poswww = strpos("{$csr}","CN=www.");
-		$pos = strpos("{$csr}","CN=");
-		$posmail = strpos("{$csr}","emailAddress");
+		$poswww = strpos($csr,"CN=www.");
+		$pos = strpos($csr,"CN=");
+		$posmail = strpos($csr,"emailAddress");
 		
 		//Herausfinden ob in der CSR CN=www.example.com oder CN=example.com steht
 		//Abfrage welcher Fall eintrifft, falls der erste Fall eintritt ansonsten 2. Fall
 		if ($poswww != 0)
 		{	
 			//Position um 3 vergrößern da "CN=" weggerechnet werden muss
-			$poswww = $poswww + 3;
+			$poswww = $poswww + 7;
 			$substring = substr($csr, $poswww);
 			
 			//Abfrage ob in der CSR eine Mailadresse angegeben wurde
@@ -226,7 +226,9 @@ DNS.1 = {$cn[0]}";
 			//CNF-Datei mit den Ergänzungen füllen
 			$inhalt = file_get_contents("/var/www/html/users/{$user}/{$user}.cnf");
 			file_put_contents("/var/www/html/users/{$user}/{$user}.cnf", $inhalt .= "{$saninput}");
-						
+			
+			$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
+			
 			//Zertifikat mit der Config singieren
 			shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
 			
@@ -266,8 +268,10 @@ DNS.1 = www.{$cn[0]}";
 			$inhalt = file_get_contents("/var/www/html/users/{$user}/{$user}.cnf");
 			file_put_contents("/var/www/html/users/{$user}/{$user}.cnf", $inhalt .= "{$saninput}");
 			
+			$pfadcnf = "/var/www/html/users/{$user}/{$user}.cnf";
+			
 			//Zertifikat mit der Config singieren
-			shell_exec('openssl ca -batch -name serverca -in ' .$pfadcsr. ' -days ' .$dauer. ' -out ' .$pfadcert);
+			shell_exec('openssl ca -batch -name serverca -out ' .$pfadcert.  ' -days ' .$dauer. ' -config ' .$pfadcnf. ' -extensions v3_req  -infiles ' .$pfadcsr);
 		}
 		
 		//Zertifikatskette
@@ -275,7 +279,7 @@ DNS.1 = www.{$cn[0]}";
 		file_put_contents("{$pfadcert}", $text .= "{$textinputserverca}");
 		
 		//Config löschen
-			unlink("/var/www/html/users/{$user}/{$user}.cnf"); 		
+		//unlink("/var/www/html/users/{$user}/{$user}.cnf"); 		
 	}
 	
 	if ($type == "intermediate"){
