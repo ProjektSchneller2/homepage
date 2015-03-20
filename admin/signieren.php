@@ -17,21 +17,16 @@
 	$crt_pfad = "users/{$user}/{$user}{$type}{$datum}{$uhrzeit}.crt";
 	$crt_timestamp = "{$datum}{$uhrzeit}";
 	
+	/*
 	echo "<br>";
 	var_dump($_POST);
 	echo "<br>";
-	
+	*/
 	
 	//inkludieren der db-verbindung:
 	include '../dbconnect.php';
 
-	/*
-	var_dump($_POST);
-	echo "<br>";
-	echo "$pfad $pfadcnf $pfadcsr $crt_pfad $crt_timestamp";
-	echo "<br>";
-	*/
-	
+
 
 	$textinputserverca = "-----BEGIN CERTIFICATE-----
 MIIGUDCCBDigAwIBAgIJALRx2NhCCNQEMA0GCSqGSIb3DQEBCwUAMFgxCzAJBgNV
