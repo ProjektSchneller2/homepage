@@ -208,7 +208,7 @@ if ($_SESSION ['certtype'] == "intermediate")
 // $name = $_FILES["csr"]["name"][$key];
 // move_uploaded_file($tmp_name, "data/$name");
 // }
-// }
+}
 
 
 ?>
