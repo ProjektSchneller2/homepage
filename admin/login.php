@@ -6,7 +6,7 @@ session_start();
 <?php 
 include 'dbconnect.php';
 
-$username = $_POST["username"]; 
+$username = mysqli_real_escape_string ($db, $_POST["username"]); 
 $passwort = hash('sha512', $username.$_POST["password"]); 
 
 $abfrage = "SELECT username, passwort FROM login WHERE username LIKE '$username' LIMIT 1"; 

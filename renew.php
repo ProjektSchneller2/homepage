@@ -11,6 +11,7 @@ if(!isset($_SESSION["username"]))
 }
 if (isset($_POST['certrenew'])){
 	$laufzeit=$_POST['dauer'];
+	$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
 	$csr_pfad=$_POST['csr_pfad'];
 	
 	include 'dbconnect.php';
