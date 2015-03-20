@@ -17,6 +17,9 @@ if ($ergebnis){
 					echo "<td>". $zeile['email'] . "</td>";
 					echo "<td> <input type=\"submit\" value=\"bestätigen\"></td>";
 					echo "</form>";
+					echo '<form action="userdenied.php" method="POST">';
+					echo "<td> <input type=\"hidden\" value=". $zeile['username'] ." name=\"username\"> <input type=\"submit\" value=\"ablehnen\"></td>";
+					echo "</form>";
 					echo "</tr>";
 				}
 echo "</table>";
