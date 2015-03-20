@@ -41,7 +41,7 @@ if (! isset($_SESSION)){
 			$db_timestamp = $datum.$uhrzeit;
 			$username = $_SESSION ['username'];
 			
-			//Übertragen der Zertifikatsdaten in die DB
+			//Ãœbertragen der Zertifikatsdaten in die DB
 			include 'dbconnect.php';
 			$laufzeit = $_SESSION['dauer'];
 			$laufzeit= mysqli_real_escape_string ($db, $laufzeit);
@@ -52,12 +52,12 @@ if (! isset($_SESSION)){
 					
 				move_uploaded_file ( $_FILES ['csruploadfile'] ['tmp_name'], 'users/' . $_SESSION ['username'] ."/". $_SESSION ['certtype'] . $datum . $uhrzeit . /*$_FILES ['csruploadfile'] ['name']*/".csr" );
 								
-				// Mail Notification für Admin
+				// Mail Notification fÃ¼r Admin
 				$empfaenger = "projektca@gmx.de";
 				$absendername = "CSR Anfrage Formular";
 				$absendermail = "projektca@gmx.de";
 				$betreff = "Eine neue Zertifikatsanfrage ist eingetroffen";
-				// Auf Nennung des Users wird aus Sicherheitsgründen verzichtet, da die Information direkt im Adminpanel bereitsteht
+				// Auf Nennung des Users wird aus SicherheitsgrÃ¼nden verzichtet, da die Information direkt im Adminpanel bereitsteht
 				$text = "Eine neue CSR wurde hochgeladen.";
 				mail ( $empfaenger, $betreff, $text, "From: $absendername <$absendermail>" );
 				
@@ -68,8 +68,8 @@ if (! isset($_SESSION)){
 				echo "<p>&nbsp;</p>";
 				echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>3.</b></td><td style=\"padding-left:10px;\"><b>Pr&uuml;fung der CSR</b></td></tr></table><p>&nbsp;</p>";
 				echo "<p>Der Upload Ihrer CSR Datei war erfolgreich!</p>";
-				echo "<p>Als nächstes werden wir Ihre Anfrage prüfen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
-				echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand können Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+				echo "<p>Als nÃ¤chstes werden wir Ihre Anfrage prÃ¼fen. Sollte Ihre Anfrage sowie die CSR Datei korrekt sein werden wir Ihr signiertes Zertifikat erstellen.</p>";
+				echo "<p>Dieses, sowie den aktuellen Bearbeitungsstand kÃ¶nnen Sie Ihrem Kundenprofil entnehmen.<br>Zu diesem <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 				
 			
 		
@@ -77,8 +77,8 @@ if (! isset($_SESSION)){
 				echo "<p>&nbsp;</p>";
 				echo "<table><tr><td style=\"border-radius:100%; background: #5bc0de; width: 35px; height: 35px; text-align: center; padding: 15px 17px;\"><b>3.</b></td><td style=\"padding-left:10px;\"><b>Pr&uuml;fung der CSR</b></td></tr></table><p>&nbsp;</p>";
 				echo "<p>Der Upload Ihrer CSR Datei war nicht erfolgreich!</p>";
-				echo "<p>Sie dürfen aus Sicherheitsgründen nur eine CSR-Anfrage pro Minute stellen.</p>";
-				echo "<p>Zurück zu Ihrem Kundenprofil <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
+				echo "<p>Sie dÃ¼rfen aus SicherheitsgrÃ¼nden nur eine CSR-Anfrage pro Minute stellen.</p>";
+				echo "<p>ZurÃ¼ck zu Ihrem Kundenprofil <a href=\"supercert.php\">gelangen Sie hier.</a></p>";
 			}
 			// echo '<a href="'.$_SESSION['username'].'/'. $_FILES['csruploadfile']['name'] .'">';
 			// echo $_SESSION['username']. $_FILES['csruploadfile']['name'];
@@ -86,7 +86,7 @@ if (! isset($_SESSION)){
 		}
 		if($_SESSION ['certtype'] == "san")
 		{
-						//CNF-Dateigerüst kopieren
+						//CNF-DateigerÃ¼st kopieren
 			$from = "/var/www/html/sanconfig/grund.cnf";
 			$to = "/var/www/html/users/{$username}/grund.cnf";
 			copy($from, $to);
@@ -103,11 +103,19 @@ IP.1 = {$_POST["ip"]}
 IP.2 = {$_POST["ip"]}
 IP.3 = {$_POST["ip"]}"; 
 			
-			//CNF-Datei mit den Usereingaben füllen
+			//CNF-Datei mit den Usereingaben fÃ¼llen
 			$inhalt = file_get_contents("/var/www/html/users/{$username}/{$username}.cnf");
 			file_put_contents("/var/www/html/users/{$username}/{$username}.cnf", $inhalt .= "{$saninput}");
 			
+			//SAN Angaben in eine Textdatei abspeichern um diese bei der ÃœberprÃ¼fung des Admins anzuzeigen
+			//Datei erstellen
+			$sandatei = fopen("/var/www/html/users/santxt" . $_SESSION ['username'] . "/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".txt", a+);
+						
+			//SAN Angaben in die erstellte Datei schreiben
+			fwrite($sandatei, $saninput);
 			
+			//Datei schlieÃŸen
+			fclose($sandatei);			
 		}
 		
 	}
@@ -168,7 +176,7 @@ else {
 if ($_SESSION ['certtype'] == "intermediate")
 {
 	echo "<h2 class=\"alert alert-danger\">Wichtiger Hinweis!</h2>";
-	echo "<p>Ein Intermediate Zertifikat berechtigt zur Signierung weiterer Zertifikate und ist dadurch sehr <strong>m&auml;chtig</strong>.</p>Um uns und unsere Kunden bzw. die ausgestellten Zertifikate zu sch&uuml;tzen werden wir Intermediate Zertifikat nur an <br><strong>vertrauensw&uuml;rdige, ausgew&auml;hlte,  Kunden, wie z.B. &Ouml;ffentliche Einrichtungen, Forschungseinrichtungen, etc. vergeben.</strong><br>Wir pr&uuml;fen jede Anfrage einzeln und benachrichtigen Sie über unsere Entscheidung.";
+	echo "<p>Ein Intermediate Zertifikat berechtigt zur Signierung weiterer Zertifikate und ist dadurch sehr <strong>m&auml;chtig</strong>.</p>Um uns und unsere Kunden bzw. die ausgestellten Zertifikate zu sch&uuml;tzen werden wir Intermediate Zertifikat nur an <br><strong>vertrauensw&uuml;rdige, ausgew&auml;hlte,  Kunden, wie z.B. &Ouml;ffentliche Einrichtungen, Forschungseinrichtungen, etc. vergeben.</strong><br>Wir pr&uuml;fen jede Anfrage einzeln und benachrichtigen Sie Ã¼ber unsere Entscheidung.";
 }
 
 // foreach ($_FILES["csr"]["error"] as $key => $error) {
