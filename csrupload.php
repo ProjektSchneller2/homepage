@@ -92,7 +92,7 @@ if (! isset($_SESSION)){
 			
 			//Datei umbennen in cnf
 			rename("/var/www/html/users/{$username}/grund.cnf", "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf");
-			$cnfdatei = "/var/www/html/users/{$username}/" . $_SESSION ['certtype'] . $datum . $uhrzeit . ".cnf";
+			$cnfdatei = "/var/www/html/{$filepath}.cnf";
 			
 			
 			//Common Name als DNS hinzufügen
