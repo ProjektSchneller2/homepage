@@ -85,7 +85,7 @@ if (! isset($_SESSION)){
 		}
 		if($_SESSION ['certtype'] == "san")
 		{
-						//CNF-Dateigerüst kopieren
+			//CNF-Dateigerüst kopieren
 			$from = "/var/www/html/sanconfig/grund.cnf";
 			$to = "/var/www/html/users/{$username}/grund.cnf";
 			copy($from, $to);
@@ -115,7 +115,7 @@ if (! isset($_SESSION)){
 				//Common Name in die variable schreiben
 				$cn = explode(" ", $substring);
 				//echo "<br>{$cn[0]}<br>";
-			
+			}
 			//SAN eingaben in variable packen
 			$saninput = "\n[ alt_names ]
 DNS.1 = {$_POST["dns"]}
@@ -138,12 +138,11 @@ IP.3 = {$_POST["ip"]}";
 			fwrite($sandatei, $saninput);
 			
 			//Datei schließen
-			fclose($sandatei);			
+			fclose($sandatei);		
 		}
 		
 	}
 } 
-
 else {
 	// echo "<pre>";
 	// echo "FILES:<br />";
@@ -207,8 +206,8 @@ if ($_SESSION ['certtype'] == "intermediate")
 // $tmp_name = $_FILES["csr"]["tmp_name"][$key];
 // $name = $_FILES["csr"]["name"][$key];
 // move_uploaded_file($tmp_name, "data/$name");
-// }
-}
+//}
+//}
 
 
 ?>
